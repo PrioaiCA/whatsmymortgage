@@ -1,0 +1,60 @@
+import { renderContactCard } from './contactCard.js';
+
+const NOTE_COLOR = { watch: 'var(--color-accent)', good: 'var(--color-neutral-900)', context: 'var(--color-neutral-500)' };
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+export function renderResultMetrics(result) {
+  const tone = result.tone || 'neutral';
+  const headerBg = tone === 'bad' ? 'var(--color-accent)' : 'var(--color-neutral-900)';
+  const notes = result.notes || [];
+  const tiles = result.tiles || [];
+  const ledgerGroups = result.ledgerGroups || [];
+  const assumptions = result.assumptions || [];
+
+  return `
+    <div class="result-header" style="background:${headerBg};color:var(--color-bg)">
+      <div class="result-kicker">${esc(result.label || '')}</div>
+      <div class="result-big">${esc(result.bigValue || '')}</div>
+      <div class="result-subtitle">${esc(result.subtitle || '')}</div>
+    </div>
+    <div class="result-tiles">
+      ${tiles.map(t => `
+        <div class="result-tile">
+          <div class="result-tile-label">${esc(t.label)}</div>
+          <div class="result-tile-value">${esc(t.value)}</div>
+        </div>`).join('')}
+    </div>
+    ${notes.length ? `
+      <div class="result-notes">
+        ${notes.map(n => `<div class="result-note" style="border-left:2px solid ${NOTE_COLOR[n.tone] || NOTE_COLOR.context}">${esc(n.text)}</div>`).join('')}
+      </div>` : ''}
+    <details class="result-details">
+      <summary>See every line</summary>
+      ${ledgerGroups.map(grp => `
+        <div class="ledger-group">
+          <div class="ledger-header">${esc(grp.header)}</div>
+          ${grp.rows.map(row => `
+            <div class="ledger-row"><span>${esc(row.label)}</span><span>${esc(row.value)}</span></div>`).join('')}
+        </div>`).join('')}
+    </details>
+    <details class="result-details">
+      <summary>What this assumed</summary>
+      <div class="ledger-group">
+        ${assumptions.map(a => `
+          <div class="assumption-row"><span>${esc(a.label)}</span><span>${esc(a.value)}</span></div>`).join('')}
+      </div>
+    </details>`;
+}
+
+export function renderResultCard(result, contactId, calculatorName, urgency) {
+  return `
+    <div class="result-card">
+      <div id="result-metrics">${renderResultMetrics(result)}</div>
+      <div class="result-details" id="result-contact" style="padding:var(--space-4)">
+        ${renderContactCard(contactId, calculatorName, urgency)}
+      </div>
+    </div>`;
+}
