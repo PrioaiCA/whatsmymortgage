@@ -5,6 +5,7 @@ import { renderCalcForm } from './src/assets/js/lib/calcFormRender.js';
 import { renderResultMetrics } from './src/assets/js/lib/resultCard.js';
 import { renderContactCard } from './src/assets/js/lib/contactCard.js';
 import { termButton } from './src/assets/js/lib/terms.js';
+import { iconSvg } from './src/assets/js/lib/icons.js';
 
 const safe = (html) => new nunjucks.runtime.SafeString(html);
 
@@ -48,6 +49,8 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addNunjucksGlobal('contactCardHtml', (opts) => safe(renderContactCard(opts)));
+
+  eleventyConfig.addNunjucksGlobal('icon', (name, size) => safe(iconSvg(name, size)));
 
   return {
     dir: {

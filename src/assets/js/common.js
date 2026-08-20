@@ -5,8 +5,10 @@ import { initTooltips } from './tooltip.js';
 import { initContactForms } from './contact-controller.js';
 import { captureAttribution } from './attribution.js';
 import { trackPageView } from './lib/analytics.js';
+import { initNavDropdown } from './nav.js';
 
 captureAttribution();
 initTooltips(document.body);
 initContactForms(document.body);
+initNavDropdown(document.body);
 trackPageView(document.body.dataset.intent);

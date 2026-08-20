@@ -6,7 +6,7 @@ export default [
   {
     slug: 'mortgage-affordability-calculator',
     view: 'afford',
-    glyph: '$',
+    icon: 'home',
     navTitle: 'What you can afford',
     ctaLabel: 'Have someone check what I can afford',
     h1: 'How much mortgage can you afford?',
@@ -21,7 +21,7 @@ export default [
   {
     slug: 'mortgage-renewal-calculator',
     view: 'renew',
-    glyph: '↻',
+    icon: 'refresh',
     navTitle: 'Your renewal options',
     ctaLabel: 'Have someone check this renewal offer',
     h1: 'Is your mortgage renewal offer fair?',
@@ -37,7 +37,7 @@ export default [
   {
     slug: 'mortgage-refinance-calculator',
     view: 'equity',
-    glyph: '△',
+    icon: 'trending-up',
     navTitle: 'Using your home equity',
     ctaLabel: 'Have someone check this refinance',
     h1: 'How much of your home equity can you use?',
@@ -53,7 +53,7 @@ export default [
   {
     slug: 'mortgage-penalty-calculator',
     view: 'penalty',
-    glyph: '✕',
+    icon: 'scissors',
     navTitle: 'Leaving a mortgage early',
     ctaLabel: 'Have someone check this penalty estimate',
     h1: 'What would it cost to break your mortgage early?',
@@ -69,7 +69,7 @@ export default [
   {
     slug: 'rent-vs-buy-calculator',
     view: 'rent',
-    glyph: '⇄',
+    icon: 'swap',
     navTitle: 'Renting compared to buying',
     h1: 'Is it better to rent or buy right now?',
     cardDesc: 'A five-year, side-by-side comparison of both paths.',
