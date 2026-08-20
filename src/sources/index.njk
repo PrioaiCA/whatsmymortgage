@@ -16,7 +16,7 @@ layout: layouts/base.njk
   <div style="margin-bottom:var(--space-6)">
     <h2 style="margin:0 0 4px;font-size:var(--text-17);letter-spacing:var(--track-17)">{{ g.title }}</h2>
     <p style="font-size:var(--text-13);opacity:.7;margin:0 0 var(--space-2)">{{ g.note }}</p>
-    {% for l in g.links %}<div style="padding:6px 0;border-bottom:1px solid var(--color-divider);font-size:var(--text-15)">{{ l }}</div>{% endfor %}
+    {% for l in g.links %}<div style="padding:6px 0;border-bottom:1px solid var(--color-divider);font-size:var(--text-15)"><a href="{{ l.href }}" target="_blank" rel="noopener noreferrer">{{ l.label }} ↗</a></div>{% endfor %}
   </div>
   {% endfor %}
   <hr class="hr"/>
@@ -25,5 +25,5 @@ layout: layouts/base.njk
   <div style="padding:8px 0;border-bottom:1px solid var(--color-divider);font-size:var(--text-13);line-height:1.5"><strong style="font-family:var(--font-heading)">{{ m.t }}</strong> {{ m.d }}</div>
   {% endfor %}
   <hr class="hr"/>
-  <p style="font-size:var(--text-13);opacity:.7;line-height:1.6;max-width:64ch">What's My Mortgage is an independent educational resource operated by [Legal Entity Name]. It is not a mortgage brokerage, lender, or insurer, and does not arrange, negotiate, or advise on mortgages. Asking to speak with someone connects you with a licensed mortgage agent, with no obligation. Confirm any agent's licence on FSRA's public registry before sharing financial documents. Every figure here is an estimate from the numbers you enter and published guidelines, not an approval, a rate guarantee, or personal advice. Penalties can only be confirmed by your current lender. Rates last reviewed August 2026.</p>
+  <p style="font-size:var(--text-13);opacity:.7;line-height:1.6;max-width:64ch">What's My Mortgage is an independent educational resource operated by [Legal Entity Name]. It is not a mortgage brokerage, lender, or insurer, and does not arrange, negotiate, or advise on mortgages. Asking to speak with someone connects you with a licensed mortgage agent, with no obligation. Confirm any agent's licence on <a href="https://www.fsrao.ca/industry/mortgage-brokering/licensing-link-and-online-services-portal" target="_blank" rel="noopener noreferrer">FSRA's public registry</a> before sharing financial documents. Every figure here is an estimate from the numbers you enter and published guidelines, not an approval, a rate guarantee, or personal advice. Penalties can only be confirmed by your current lender. Rates last reviewed August 2026.</p>
 </div>

@@ -37,7 +37,9 @@
 {{ content | safe }}
 </main>
 {% include "partials/footer.njk" %}
+{% include "partials/assistant.njk" %}
 {% if not noJs %}<script type="module" src="/assets/js/common.js"></script>{% endif %}
 {% if pageScript %}<script type="module" src="{{ pageScript }}"></script>{% endif %}
+<script type="module" src="/assets/js/assistant.js"></script>
 </body>
 </html>

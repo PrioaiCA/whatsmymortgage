@@ -5,6 +5,7 @@ canonicalPath: "/"
 ogSlug: "home"
 layout: layouts/base.njk
 intent: low
+pageScript: "/assets/js/pages/home.js"
 schema:
   "@context": "https://schema.org"
   "@type": "WebSite"
@@ -26,6 +27,8 @@ schema:
       <span class="hero-badge">{{ icon('check', 14) }} No signup</span>
       <span class="hero-badge">{{ icon('check', 14) }} Real lender math</span>
     </div>
+    <button type="button" id="qz-trigger" class="qz-trigger" aria-expanded="false" aria-controls="qz-panel">Not sure where to start? Take the 1-minute questionnaire {{ icon('chevron-down', 14) }}</button>
+    <div id="qz-panel" class="qz-panel" hidden></div>
   </div>
 </div>
 
