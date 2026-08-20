@@ -34,7 +34,7 @@ export function renderContactCard(opts) {
   return `
     <div class="contact-card" data-contact-id="${id}" data-calc-name="${esc(calculatorName)}" data-urgency="${esc(urgency)}">
       <div>
-        <h4 style="margin:0 0 6px">Want a person to look at it?</h4>
+        <h2 style="margin:0 0 6px;font-size:20px">Want a person to look at it?</h2>
         <p style="font-size:13px;opacity:.75;margin:0;max-width:56ch">${esc(introText)}</p>
       </div>
       <div class="contact-fields">
@@ -68,7 +68,7 @@ export function renderContactThanks(id) {
   return `
     <div class="contact-card" data-contact-id="${id}">
       <div style="text-align:center;padding:var(--space-4) 0">
-        <h4 style="margin:0 0 6px">That's on its way.</h4>
+        <h2 style="margin:0 0 6px;font-size:20px">That's on its way.</h2>
         <p style="font-size:13px;opacity:.75;margin:0">A licensed mortgage agent will reach out soon.</p>
       </div>
     </div>`;
