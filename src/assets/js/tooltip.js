@@ -88,6 +88,11 @@ export function initTooltips(root) {
   root.addEventListener('click', (e) => {
     const btn = e.target.closest('.term-btn');
     if (!btn) return;
+    // A plain click pins/unpins the preview in place, same as before this
+    // became a real link. A modified click (new tab, etc.) is left alone
+    // so it still navigates to the glossary entry.
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
     pinnedTerm = pinnedTerm === btn.dataset.term ? null : btn.dataset.term;
     render();
   });

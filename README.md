@@ -50,7 +50,44 @@ src/
 functions/api/lead.js   Cloudflare Pages Function: validates + honeypots +
                          forwards a lead to the n8n webhook (LEAD_WEBHOOK_URL
                          env var — never in the repo)
+scripts/build-og-images.js   generates the per-page branded OG images
+                         (src/assets/og/*.png, committed — see below)
 ```
+
+## Content pages
+
+`/learn/` (hub + one article per slug), `/mortgage-glossary/` (every term,
+each a real anchor other pages link to), `/what-happens-next/`,
+`/what-youll-need/`, `/sources/`, `/about/`, `/contact/`, `/privacy/`,
+`/terms/` — plus `/sitemap.xml` and `/robots.txt`. Every page ships a
+unique title (≤60 chars), description (≤155 chars), canonical URL, OG/Twitter
+tags with a branded per-page image, and JSON-LD (`WebApplication` on
+calculators, `Article` on learn pages, `DefinedTermSet` on the glossary,
+`FAQPage` on the document checklist).
+
+## Conversion design
+
+The contact form's position and tone follow the calculator's intent tier
+(`calculators.js` → `intent: 'high' | 'medium' | 'low'`): high-intent
+calculators (renewal, refinance, penalty) embed it directly under the
+result with an intent-qualifying field; medium (affordability) shows it
+lower, softened; low (rent vs. buy) shows no form at all, just a link to
+whatever's actually useful next. Every calculator result also links to one
+logical next page regardless of tier. No calculator ever gates a result
+behind the form.
+
+## Accessibility
+
+Automated with axe-core (`@axe-core/playwright`) against every page — 0
+WCAG 2 A/AA violations as of this build. Notably: text-sized accent-red
+uses the `--color-accent-700` ramp step rather than the base `--color-accent`
+(which the source design system's own docs describe as tuned for icons/large
+text/UI chrome at ~3.8:1, not the 4.5:1 body-text minimum); button/toggle
+fills use `--color-accent-600` with white text for the same reason. A
+skip-link, visible `:focus-visible` rings, and associated `<label for>` /
+`<select>` names round it out. Re-run the scan after CSS/copy changes — it's
+cheap and catches regressions fast (see the audit script pattern used during
+this build; not checked in, easy to recreate with `@axe-core/playwright`).
 
 The same render functions run twice: once in Node during the 11ty build (so
 the HTML a crawler sees already has real numbers and copy in it), and again

@@ -1,0 +1,31 @@
+---
+title: "Learn: Mortgage Basics Explained | WhatsMyMortgage.ca"
+description: "Short, plain-language explainers on mortgages in Ontario — grouped by where you are: before you buy, while you own, and closing costs."
+canonicalPath: "/learn/"
+ogSlug: "learn"
+layout: layouts/base.njk
+---
+<div class="container-narrow" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
+  <a class="back-link" href="/">← All calculators</a>
+  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:32px">Get to know mortgages</h1>
+  <p style="font-size:15px;opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">Short reads worth knowing before you touch a calculator, grouped by where you are. Tap the <span class="info-dot">i</span> on any term for more.</p>
+
+  {% for group in ["Before you buy", "While you own", "Closing & costs"] %}
+  <h2 style="margin:var(--space-6) 0 var(--space-3);font-size:20px">{{ group }}</h2>
+  <div class="grid-auto-md" style="margin-bottom:var(--space-4)">
+    {% for a in learnArticles %}
+      {% if a.group == group %}
+      <a href="/learn/{{ a.slug }}/" class="card click-card" style="padding:var(--space-4);border:1px solid var(--color-divider)">
+        <div class="card-title" style="font-size:15px">{{ a.title }}</div>
+        <p class="card-body" style="margin:6px 0 0">{{ a.readTime }}</p>
+      </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+
+  <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)">
+    <a class="btn btn-primary" href="/mortgage-affordability-calculator/">Go straight to a calculator</a>
+    <a class="btn btn-ghost" href="/mortgage-glossary/">Browse the full glossary</a>
+  </div>
+</div>

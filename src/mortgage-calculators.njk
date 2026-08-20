@@ -3,6 +3,7 @@ pagination:
   data: calculators
   size: 1
   alias: calc
+  addAllPagesToCollections: true
 permalink: "{{ calc.slug }}/index.html"
 layout: layouts/base.njk
 eleventyComputed:
@@ -80,8 +81,6 @@ eleventyComputed:
   </div>
   {% endif %}
 
-  {% if calc.intent == 'low' %}
   {% from "partials/cta.njk" import nextPageBox %}
   {{ nextPageBox(calc.nextPage) }}
-  {% endif %}
 </div>

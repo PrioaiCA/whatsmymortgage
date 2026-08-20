@@ -1,6 +1,6 @@
 ---
 title: "What's My Mortgage.ca — Ontario Mortgage Calculators"
-description: "Free mortgage calculators for Ontario: what you can afford, renewal options, home equity, breaking a mortgage early, and renting vs. buying — worked out with the same math a lender uses."
+description: "See what you can afford, what your renewal really costs, or what breaking your mortgage would mean — free Ontario calculators, real lender math, no signup."
 canonicalPath: "/"
 ogSlug: "home"
 pageScript: "/assets/js/pages/home.js"
@@ -29,22 +29,34 @@ schema:
     <h2 style="margin:0 0 6px">Where are you right now?</h2>
     <p style="font-size:14px;opacity:.65;margin:0 0 var(--space-4);max-width:56ch">Pick the sentence closest to your situation. It opens the right calculator and the right reading.</p>
     <div class="grid-auto">
-      <a href="/mortgage-affordability-calculator/" class="card elev-sm click-card" style="padding:var(--space-4)">
-        <div class="card-title" style="margin-bottom:6px">I'm thinking about buying</div>
-        <p class="card-body" style="margin:0">See what you could realistically afford.</p>
-      </a>
-      <a href="/mortgage-renewal-calculator/" class="card elev-sm click-card" style="padding:var(--space-4)">
-        <div class="card-title" style="margin-bottom:6px">My mortgage is renewing soon</div>
-        <p class="card-body" style="margin:0">Check what your bank's offer actually costs.</p>
-      </a>
-      <a href="/mortgage-refinance-calculator/" class="card elev-sm click-card" style="padding:var(--space-4)">
-        <div class="card-title" style="margin-bottom:6px">I'm wondering about refinancing</div>
-        <p class="card-body" style="margin:0">See what tapping your equity would free up.</p>
-      </a>
-      <a href="/rent-vs-buy-calculator/" class="card elev-sm click-card" style="padding:var(--space-4)">
-        <div class="card-title" style="margin-bottom:6px">I'm renting and not sure</div>
-        <p class="card-body" style="margin:0">Compare renting and buying over five years.</p>
-      </a>
+      <div class="card elev-sm" style="padding:var(--space-4)">
+        <a href="/mortgage-affordability-calculator/" style="text-decoration:none;color:inherit">
+          <div class="card-title" style="margin-bottom:6px">I'm thinking about buying</div>
+          <p class="card-body" style="margin:0">See what you could realistically afford.</p>
+        </a>
+        <a href="/learn/what-a-mortgage-actually-is/" style="font-size:12px;font-weight:800;font-family:var(--font-heading)">Or read the basics first →</a>
+      </div>
+      <div class="card elev-sm" style="padding:var(--space-4)">
+        <a href="/mortgage-renewal-calculator/" style="text-decoration:none;color:inherit">
+          <div class="card-title" style="margin-bottom:6px">My mortgage is renewing soon</div>
+          <p class="card-body" style="margin:0">Check what your bank's offer actually costs.</p>
+        </a>
+        <a href="/learn/term-vs-amortization/" style="font-size:12px;font-weight:800;font-family:var(--font-heading)">Or read about renewals first →</a>
+      </div>
+      <div class="card elev-sm" style="padding:var(--space-4)">
+        <a href="/mortgage-refinance-calculator/" style="text-decoration:none;color:inherit">
+          <div class="card-title" style="margin-bottom:6px">I'm wondering about refinancing</div>
+          <p class="card-body" style="margin:0">See what tapping your equity would free up.</p>
+        </a>
+        <a href="/learn/down-payment-and-loan-to-value/" style="font-size:12px;font-weight:800;font-family:var(--font-heading)">Or read about equity first →</a>
+      </div>
+      <div class="card elev-sm" style="padding:var(--space-4)">
+        <a href="/rent-vs-buy-calculator/" style="text-decoration:none;color:inherit">
+          <div class="card-title" style="margin-bottom:6px">I'm renting and not sure</div>
+          <p class="card-body" style="margin:0">Compare renting and buying over five years.</p>
+        </a>
+        <a href="/learn/what-a-mortgage-actually-is/" style="font-size:12px;font-weight:800;font-family:var(--font-heading)">Or read the basics first →</a>
+      </div>
       <a href="/learn/" class="card elev-sm click-card" style="padding:var(--space-4)">
         <div class="card-title" style="margin-bottom:6px">I just want to understand what I have</div>
         <p class="card-body" style="margin:0">Start with the basics, no calculator needed yet.</p>
@@ -62,7 +74,7 @@ schema:
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--space-4)">
           {% for chip in copy.ASK_CHIPS %}
             {% if chip.jargon %}
-            <a class="tag tag-neutral" style="text-decoration:none" href="/mortgage-glossary/?q={{ chip.jargon | urlencode }}">{{ chip.label }}</a>
+            <a class="tag tag-neutral" style="text-decoration:none" href="/mortgage-glossary/#{{ chip.jargon }}">{{ chip.label }}</a>
             {% else %}
             <button type="button" class="tag tag-neutral" style="cursor:pointer;border:none" data-ask-query="{{ chip.query }}">{{ chip.label }}</button>
             {% endif %}

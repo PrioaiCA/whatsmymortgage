@@ -1,0 +1,50 @@
+---
+pagination:
+  data: learnArticles
+  size: 1
+  alias: article
+  addAllPagesToCollections: true
+permalink: "learn/{{ article.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ article.metaTitle }}"
+  description: "{{ article.metaDescription }}"
+  ogSlug: "learn-{{ article.slug }}"
+  ogType: "article"
+  schema:
+    "@context": "https://schema.org"
+    "@type": "Article"
+    headline: "{{ article.title }}"
+    description: "{{ article.metaDescription }}"
+    url: "{{ site.url }}/learn/{{ article.slug }}/"
+    author:
+      "@type": "Organization"
+      name: "{{ site.name }}"
+    publisher:
+      "@type": "Organization"
+      name: "{{ site.name }}"
+---
+<div class="container-narrow" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
+  <a class="back-link" href="/learn/">← All articles</a>
+  <p style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin:var(--space-4) 0 6px">{{ article.group }} · {{ article.readTime }}</p>
+  <h1 style="margin:0 0 var(--space-4);font-size:30px;display:flex;align-items:center;gap:8px">{{ article.title }}{% if article.term %}{{ article.term | termButton }}{% endif %}</h1>
+  <p style="font-size:16px;line-height:1.7;opacity:.85;max-width:64ch">{{ article.body }}</p>
+
+  {% if article.relatedCalcs.length %}
+  <div style="margin-top:var(--space-8)">
+    <h2 style="margin:0 0 var(--space-4);font-size:18px">See it in a calculator</h2>
+    <div class="grid-auto-md">
+      {% for view in article.relatedCalcs %}
+        {% for calc in calculators %}
+          {% if calc.view == view %}
+          <a href="/{{ calc.slug }}/" class="card click-card" style="padding:var(--space-4);border:1px solid var(--color-divider)">
+            <span class="calc-glyph" style="margin-bottom:6px">{{ calc.glyph }}</span>
+            <div class="card-title" style="font-size:15px">{{ calc.navTitle }}</div>
+          </a>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>

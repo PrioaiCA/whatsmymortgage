@@ -1,6 +1,16 @@
-import { routeFromTranscript } from '../lib/content.js';
+import { routeFromTranscript, TERMS } from '../lib/content.js';
 
 const SLUGS = { afford: 'mortgage-affordability-calculator', renew: 'mortgage-renewal-calculator', equity: 'mortgage-refinance-calculator', penalty: 'mortgage-penalty-calculator', rent: 'rent-vs-buy-calculator' };
+
+function findTermKey(phrase) {
+  const p = phrase.toLowerCase();
+  if (!p) return null;
+  const entry = Object.entries(TERMS).find(([, [label]]) => {
+    const l = label.toLowerCase();
+    return l === p || l.includes(p) || p.includes(l);
+  });
+  return entry ? entry[0] : null;
+}
 
 function submitAsk(text) {
   const errorEl = document.getElementById('ask-error');
@@ -8,7 +18,8 @@ function submitAsk(text) {
   const lower = text.toLowerCase();
   if (/what (is|does|are)|meaning of|define/.test(lower)) {
     const term = text.replace(/what (is|does|are)|meaning of|define/gi, '').trim();
-    window.location.href = '/mortgage-glossary/?q=' + encodeURIComponent(term);
+    const key = findTermKey(term);
+    window.location.href = '/mortgage-glossary/' + (key ? '#' + key : '');
     return;
   }
   const calc = routeFromTranscript(text);

@@ -21,7 +21,15 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addNunjucksFilter('termButton', (term) => safe(termButton(term)));
   eleventyConfig.addNunjucksFilter('jsonify', (obj) => JSON.stringify(obj));
+  eleventyConfig.addNunjucksFilter('slugify', (str) => String(str).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''));
+  eleventyConfig.addNunjucksFilter('sortByLabel', (arr) => [...arr].sort((a, b) => a.label.localeCompare(b.label)));
+  eleventyConfig.addNunjucksFilter('termsSorted', (termsObj) =>
+    Object.entries(termsObj)
+      .map(([key, [label, def]]) => ({ key, label, def }))
+      .sort((a, b) => a.label.localeCompare(b.label))
+  );
   eleventyConfig.addGlobalData('buildYear', () => new Date().getFullYear());
+  eleventyConfig.addGlobalData('buildDate', () => new Date().toISOString().slice(0, 10));
 
   // Server-renders the slider/toggle form at its default values — real,
   // crawlable markup, not an empty div waiting on JS.

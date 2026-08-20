@@ -91,7 +91,7 @@ export const METHOD_NOTES = [
 export const ASK_CHIPS = [
   { label: 'How much could I afford?', query: 'how much could I afford' },
   { label: 'My mortgage renews next year, what should I do?', query: 'my mortgage renews next year' },
-  { label: "What's loan-to-value?", jargon: 'loan-to-value' },
+  { label: "What's loan-to-value?", jargon: 'ltv' },
   { label: 'Should I break my mortgage?', query: 'should I break my mortgage penalty' },
   { label: 'Is renting better right now?', query: 'is renting better than buying' }
 ];

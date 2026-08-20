@@ -38,29 +38,29 @@ export function renderContactCard(opts) {
         <p style="font-size:13px;opacity:.75;margin:0;max-width:56ch">${esc(introText)}</p>
       </div>
       <div class="contact-fields">
-        <div class="field"><label>First name</label><input class="input" data-contact-field="firstName" value="${esc(f.firstName)}" autocomplete="given-name"/></div>
-        <div class="field"><label>City</label><input class="input" data-contact-field="city" value="${esc(f.city)}" autocomplete="address-level2"/></div>
-        <div class="field"><label>Email</label><input class="input" type="email" data-contact-field="email" value="${esc(f.email)}" autocomplete="email"/></div>
-        <div class="field"><label>Phone (optional)</label><input class="input" data-contact-field="phone" value="${esc(f.phone)}" autocomplete="tel"/></div>
+        <div class="field"><label for="${id}-firstName">First name</label><input id="${id}-firstName" class="input" data-contact-field="firstName" value="${esc(f.firstName)}" autocomplete="given-name"/></div>
+        <div class="field"><label for="${id}-city">City</label><input id="${id}-city" class="input" data-contact-field="city" value="${esc(f.city)}" autocomplete="address-level2"/></div>
+        <div class="field"><label for="${id}-email">Email</label><input id="${id}-email" class="input" type="email" data-contact-field="email" value="${esc(f.email)}" autocomplete="email"/></div>
+        <div class="field"><label for="${id}-phone">Phone (optional)</label><input id="${id}-phone" class="input" data-contact-field="phone" value="${esc(f.phone)}" autocomplete="tel"/></div>
       </div>
       ${qualifier ? `
       <div class="field">
-        <label>${esc(qualifier.label)}</label>
-        <select class="input" data-contact-field="qualifier">
+        <label for="${id}-qualifier">${esc(qualifier.label)}</label>
+        <select id="${id}-qualifier" class="input" data-contact-field="qualifier">
           <option value="" ${f.qualifier === '' ? 'selected' : ''}>Prefer not to say</option>
           ${qualifier.options.map(opt => `<option value="${esc(opt)}" ${f.qualifier === opt ? 'selected' : ''}>${esc(opt)}</option>`).join('')}
         </select>
       </div>` : ''}
-      <label class="contact-consent">
-        <input type="checkbox" data-contact-consent ${f.consent ? 'checked' : ''} style="margin-top:2px"/>
+      <label class="contact-consent" for="${id}-consent">
+        <input id="${id}-consent" type="checkbox" data-contact-consent ${f.consent ? 'checked' : ''} style="margin-top:2px"/>
         <span>${esc(CONSENT_TEXT)}</span>
       </label>
       <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
-        <label>Leave this field blank<input type="text" tabindex="-1" autocomplete="off" data-contact-field="company"/></label>
+        <label for="${id}-company">Leave this field blank</label><input id="${id}-company" type="text" tabindex="-1" autocomplete="off" data-contact-field="company"/>
       </div>
       ${error ? `<p style="font-size:12px;color:var(--color-accent-700);margin:0" role="alert">${esc(error)}</p>` : ''}
       <button type="button" class="btn btn-primary btn-block" data-action="contactSubmit" ${disabled} style="justify-content:center;text-align:center">Connect me with an agent</button>
-      <p style="font-size:11px;opacity:.55;margin:0">Optional. Everything above stays on your screen either way — we send your details to one licensed agent, not a list of them.</p>
+      <p style="font-size:11px;opacity:.7;margin:0">Optional. Everything above stays on your screen either way — we send your details to one licensed agent, not a list of them.</p>
     </div>`;
 }
 

@@ -8,14 +8,14 @@ function esc(s) {
 
 export function renderResultMetrics(result) {
   const tone = result.tone || 'neutral';
-  const headerBg = tone === 'bad' ? 'var(--color-accent)' : 'var(--color-neutral-900)';
+  const headerBg = tone === 'bad' ? 'var(--color-accent-600)' : 'var(--color-neutral-900)';
   const notes = result.notes || [];
   const tiles = result.tiles || [];
   const ledgerGroups = result.ledgerGroups || [];
   const assumptions = result.assumptions || [];
 
   return `
-    <div class="result-header" style="background:${headerBg};color:var(--color-bg)">
+    <div class="result-header" style="background:${headerBg};color:#fff">
       <div class="result-kicker">${esc(result.label || '')}</div>
       <div class="result-big">${esc(result.bigValue || '')}</div>
       <div class="result-subtitle">${esc(result.subtitle || '')}</div>

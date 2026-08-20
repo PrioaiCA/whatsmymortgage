@@ -1,0 +1,25 @@
+---
+title: "Mortgage Glossary: Jargon, Decoded | WhatsMyMortgage.ca"
+description: "Plain-language definitions for every mortgage term that matters — amortization, stress test, GDS/TDS, loan-to-value, and more."
+canonicalPath: "/mortgage-glossary/"
+ogSlug: "mortgage-glossary"
+layout: layouts/base.njk
+---
+<div class="container-narrow" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
+  <a class="back-link" href="/">← All calculators</a>
+  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:32px">Mortgage glossary, decoded</h1>
+  <p style="font-size:15px;opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">Every term used across the calculators, in plain language. Follow a link from any calculator straight to its definition here.</p>
+  <div>
+    {% for t in copy.TERMS | termsSorted %}
+    <div class="jargon-item" id="{{ t.key }}">
+      <div class="jargon-term">{{ t.label }}</div>
+      <p class="jargon-def">{{ t.def }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="card" style="padding:var(--space-4);border:1px solid var(--color-divider);background:var(--color-bg);margin-top:var(--space-6)">
+    <p style="font-size:13px;opacity:.65;margin:0 0 8px">Next</p>
+    <a class="btn btn-secondary" href="/learn/">Read the full explainers →</a>
+  </div>
+</div>

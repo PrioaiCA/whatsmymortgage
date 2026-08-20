@@ -1,0 +1,29 @@
+---
+title: "What Documents Do You Need for a Mortgage? | Ontario"
+description: "The exact documents lenders ask for, by how you're paid: salaried, self-employed, or on commission. Know what to gather before you apply."
+canonicalPath: "/what-youll-need/"
+ogSlug: "what-youll-need"
+layout: layouts/base.njk
+---
+<div class="container-narrow" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
+  <a class="back-link" href="/">← All calculators</a>
+  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:32px">What documents will you need?</h1>
+  <p style="font-size:15px;opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">What a lender actually asks for depends on how you're paid. Have these ready before you apply and the process moves faster.</p>
+
+  <div class="grid-auto-md">
+    {% for g in copy.DOC_GROUPS %}
+    <div class="card elev-sm" style="padding:var(--space-4);background:var(--color-bg)">
+      <div class="card-title" style="font-size:16px;margin-bottom:8px">{{ g.title }}</div>
+      {% for item in g.items %}<div style="font-size:14px;padding:6px 0;border-bottom:1px solid var(--color-divider)">{{ item }}</div>{% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="card" style="padding:var(--space-6);border:1px solid var(--color-divider);background:var(--color-bg);margin-top:var(--space-8)">
+    {{ contactCardHtml({
+      id: 'docs',
+      calculatorName: 'What documents you will need',
+      intro: "Not sure which of these applies to you, or what counts as proof of income in your situation? A licensed mortgage agent can tell you exactly what your file needs, before you start gathering paperwork."
+    }) | safe }}
+  </div>
+</div>

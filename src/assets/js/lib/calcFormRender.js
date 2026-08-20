@@ -28,5 +28,5 @@ export function renderCalcForm(view, s, fields, sourcesHref) {
             </label>`).join('')}
         </div>
       </div>`).join('')}
-    <p style="font-size:11px;opacity:.55;margin:var(--space-4) 0 0">Last reviewed August 2026 · rates and rules from <a href="${sourcesHref || '/sources/'}">Sources &amp; method</a></p>`;
+    <p style="font-size:11px;margin:var(--space-4) 0 0"><span style="color:color-mix(in srgb, var(--color-text) 70%, transparent)">Last reviewed August 2026 · rates and rules from</span> <a href="${sourcesHref || '/sources/'}">Sources &amp; method</a></p>`;
 }
