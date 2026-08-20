@@ -2,8 +2,10 @@
 // that opt out of the common.js bundle (learn hub, glossary, learn
 // articles) so they stay JS-free for everything but this.
 import { track, trackPageView } from '../lib/analytics.js';
+import { initNavDropdown } from '../nav.js';
 
 trackPageView(document.body.dataset.intent);
+initNavDropdown(document.body);
 
 const article = document.querySelector('.learn-article');
 if (article) {

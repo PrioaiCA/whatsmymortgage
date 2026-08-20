@@ -15,7 +15,7 @@ intent: medium
   <div style="display:flex;flex-direction:column;gap:0;border-top:2px solid var(--color-divider)">
     {% for step in copy.PROCESS_STEPS %}
     <div style="display:flex;gap:var(--space-4);padding:var(--space-4) 0;border-bottom:1px solid var(--color-divider);align-items:baseline;flex-wrap:wrap">
-      <div style="font-family:var(--font-heading);font-weight:800;font-size:var(--text-13);color:var(--color-neutral-700);width:28px;flex:none">{{ step.n }}</div>
+      <div class="how-n" style="margin-top:2px">{{ loop.index }}</div>
       <div style="flex:1 1 240px">
         <div style="font-family:var(--font-heading);font-weight:800;font-size:var(--text-17);letter-spacing:var(--track-17);margin-bottom:4px">{{ step.title }}</div>
         <p style="font-size:var(--text-15);opacity:.75;line-height:1.6;margin:0 0 4px">{{ step.blurb }}</p>
@@ -25,7 +25,7 @@ intent: medium
     {% endfor %}
   </div>
 
-  <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
+  <div style="margin-top:var(--space-8)">
     {{ contactCardHtml({
       id: 'process',
       calculatorName: 'What happens next',

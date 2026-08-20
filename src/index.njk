@@ -16,9 +16,17 @@ schema:
   JOB: route each visitor to the right calculator and the right reading —
   nothing is answered or explained on this page itself.
 #}
-<div class="hero container-mid">
-  <h1>What's my mortgage?</h1>
-  <p>Free calculators for Ontario homebuyers and homeowners, built on the same math a lender uses.</p>
+<div class="hero-band">
+  <div class="hero container-mid">
+    <div class="hero-kicker">{{ icon('shield', 15) }} Ontario mortgage calculators</div>
+    <h1>What's my mortgage?</h1>
+    <p>Free calculators for Ontario homebuyers and homeowners, built on the same math a lender uses.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">{{ icon('check', 14) }} Free, always</span>
+      <span class="hero-badge">{{ icon('check', 14) }} No signup</span>
+      <span class="hero-badge">{{ icon('check', 14) }} Real lender math</span>
+    </div>
+  </div>
 </div>
 
 <div class="section container" id="situations">
@@ -27,6 +35,7 @@ schema:
   <div class="journey-grid">
     <div class="journey-card">
       <a href="/mortgage-affordability-calculator/" class="journey-link">
+        <span class="journey-icon">{{ icon('home', 22) }}</span>
         <div class="journey-title">I'm thinking about buying</div>
         <p class="journey-desc">See what you could realistically afford.</p>
       </a>
@@ -34,6 +43,7 @@ schema:
     </div>
     <div class="journey-card">
       <a href="/mortgage-renewal-calculator/" class="journey-link">
+        <span class="journey-icon">{{ icon('refresh', 22) }}</span>
         <div class="journey-title">My mortgage is renewing soon</div>
         <p class="journey-desc">Check what your bank's offer actually costs.</p>
       </a>
@@ -41,6 +51,7 @@ schema:
     </div>
     <div class="journey-card">
       <a href="/mortgage-refinance-calculator/" class="journey-link">
+        <span class="journey-icon">{{ icon('trending-up', 22) }}</span>
         <div class="journey-title">I'm wondering about refinancing</div>
         <p class="journey-desc">See what tapping your equity would free up.</p>
       </a>
@@ -48,6 +59,7 @@ schema:
     </div>
     <div class="journey-card">
       <a href="/rent-vs-buy-calculator/" class="journey-link">
+        <span class="journey-icon">{{ icon('swap', 22) }}</span>
         <div class="journey-title">I'm renting and not sure</div>
         <p class="journey-desc">Compare renting and buying over five years.</p>
       </a>
@@ -55,6 +67,7 @@ schema:
     </div>
     <div class="journey-card">
       <a href="/learn/" class="journey-link">
+        <span class="journey-icon">{{ icon('book', 22) }}</span>
         <div class="journey-title">I just want to understand what I have</div>
         <p class="journey-desc">Start with the basics, no calculator needed yet.</p>
       </a>
@@ -86,6 +99,6 @@ schema:
 
 <div class="section container-mid">
   <div class="trust-strip">
-    {% for b in copy.TRUST_BADGES %}<span class="trust-item">{{ b }}</span>{% endfor %}
+    {% for b in copy.TRUST_BADGES %}<span class="trust-item">{{ icon('check', 14) }} {{ b }}</span>{% endfor %}
   </div>
 </div>

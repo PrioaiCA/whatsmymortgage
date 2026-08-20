@@ -1,7 +1,8 @@
 import { renderContactCard } from './contactCard.js';
 
-// Severity reads through value (how dark), not hue — accent is reserved
-// for the page's one primary action, not multiplied across every note.
+// Note emphasis still reads through value (how dark), not hue — the brand
+// color itself is reserved for the header above, so a page's notes don't
+// compete with its own answer.
 const NOTE_COLOR = { watch: 'var(--color-neutral-900)', good: 'var(--color-neutral-600)', context: 'var(--color-neutral-400)' };
 
 function esc(s) {
@@ -9,10 +10,10 @@ function esc(s) {
 }
 
 export function renderResultMetrics(result) {
-  // The header is always ink, never accent — a bad-news result reads through
-  // the number and wording (already negative/framed as such), not a colored
-  // panel. Accent stays reserved for the page's one primary action.
-  const headerBg = 'var(--color-neutral-900)';
+  // The header is always the brand color — this is the one number someone
+  // came for, and it should look like it belongs to this site. A bad-news
+  // result still reads through the wording, not a different color.
+  const headerBg = 'var(--color-accent-600)';
   const notes = result.notes || [];
   const tiles = result.tiles || [];
   const ledgerGroups = result.ledgerGroups || [];
