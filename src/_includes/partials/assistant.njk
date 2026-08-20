@@ -1,0 +1,12 @@
+<div id="assistant-widget" class="assistant-widget">
+  <button type="button" id="assistant-toggle" class="assistant-fab" aria-expanded="false" aria-controls="assistant-panel" aria-label="Talk to our mortgage assistant">
+    {{ icon('message-circle', 24) }}
+  </button>
+  <div id="assistant-panel" class="assistant-panel" hidden role="dialog" aria-label="Mortgage assistant" aria-modal="false">
+    <div class="assistant-header">
+      <span class="assistant-header-title">{{ icon('message-circle', 18) }} Talk to our mortgage assistant</span>
+      <button type="button" id="assistant-close" class="assistant-icon-btn" aria-label="Close">{{ icon('x', 18) }}</button>
+    </div>
+    <div id="assistant-body" class="assistant-body"></div>
+  </div>
+</div>

@@ -16,10 +16,24 @@ export const PROCESS_STEPS = [
 ];
 
 export const SOURCE_GROUPS = [
-  { title: 'Rates and lending rules', note: 'Benchmark rates, the stress test, and the qualifying rules lenders must follow.', links: ['Bank of Canada: policy rate and bond yields', 'OSFI Guideline B-20: residential mortgage underwriting', 'Department of Finance Canada: mortgage insurance rules'] },
-  { title: 'Mortgage insurance', note: 'Premium rates and eligibility for default-insured mortgages.', links: ['CMHC: mortgage loan insurance premiums and rules'] },
-  { title: 'Taxes and closing costs', note: 'Land transfer tax brackets, rebates, and closing-cost guidance.', links: ['Ontario Ministry of Finance: land transfer tax', 'City of Toronto: municipal land transfer tax', "Canada Revenue Agency: Home Buyers' Plan, FHSA, GST/HST new housing rebate"] },
-  { title: 'Consumer protection', note: "Verify a mortgage agent's licence before sharing financial documents.", links: ['FSRA: public registry of licensed mortgage agents and brokerages'] }
+  { title: 'Rates and lending rules', note: 'Benchmark rates, the stress test, and the qualifying rules lenders must follow.', links: [
+    { label: 'Bank of Canada: policy rate and bond yields', href: 'https://www.bankofcanada.ca/rates/interest-rates/canadian-interest-rates/' },
+    { label: 'OSFI Guideline B-20: residential mortgage underwriting', href: 'https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/final-revised-guideline-b-20-residential-mortgage-underwriting-practices-procedures' },
+    { label: 'Department of Finance Canada: mortgage insurance rules', href: 'https://www.canada.ca/en/department-finance/news/2024/09/government-announces-boldest-mortgage-reforms-in-decades-to-unlock-homeownership-for-more-canadians.html' }
+  ] },
+  { title: 'Mortgage insurance', note: 'Premium rates and eligibility for default-insured mortgages.', links: [
+    { label: 'CMHC: mortgage loan insurance premiums and rules', href: 'https://www.cmhc-schl.gc.ca/consumers/home-buying/mortgage-loan-insurance-for-consumers/cmhc-mortgage-loan-insurance-cost' }
+  ] },
+  { title: 'Taxes and closing costs', note: 'Land transfer tax brackets, rebates, and closing-cost guidance.', links: [
+    { label: 'Ontario Ministry of Finance: land transfer tax', href: 'https://www.ontario.ca/document/land-transfer-tax' },
+    { label: 'City of Toronto: municipal land transfer tax', href: 'https://www.toronto.ca/services-payments/property-taxes-utilities/municipal-land-transfer-tax-mltt/' },
+    { label: "Canada Revenue Agency: Home Buyers' Plan", href: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/rrsps-related-plans/what-home-buyers-plan/participate-home-buyers-plan.html' },
+    { label: 'Canada Revenue Agency: First Home Savings Account (FHSA)', href: 'https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/first-home-savings-account.html' },
+    { label: 'Canada Revenue Agency: GST/HST new housing rebate', href: 'https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/gst190.html' }
+  ] },
+  { title: 'Consumer protection', note: "Verify a mortgage agent's licence before sharing financial documents.", links: [
+    { label: 'FSRA: public registry of licensed mortgage agents and brokerages', href: 'https://www.fsrao.ca/industry/mortgage-brokering/licensing-link-and-online-services-portal' }
+  ] }
 ];
 
 export const METHOD_NOTES = [
