@@ -1,7 +1,7 @@
 // A single shared floating tooltip for every info-dot term button on the
 // page (`<button class="term-btn" data-term="...">`). Hover to preview,
 // click to pin, Escape/outside-click/scroll to dismiss.
-import { TERMS } from './content.js';
+import { TERMS } from './lib/content.js';
 
 let pinnedTerm = null;
 let hoveredTerm = null;
@@ -59,6 +59,7 @@ function close() {
 }
 
 export function initTooltips(root) {
+  root = root || document.body;
   root.addEventListener('mouseover', (e) => {
     const btn = e.target.closest('.term-btn');
     if (!btn) return;
@@ -99,11 +100,4 @@ export function initTooltips(root) {
     if (e.key === 'Escape' && (pinnedTerm || hoveredTerm)) close();
   });
   window.addEventListener('scroll', () => { if (pinnedTerm || hoveredTerm) close(); }, true);
-}
-
-export function closeTooltip() { close(); }
-
-export function termButton(term) {
-  if (!term) return '';
-  return `<button type="button" class="term-btn" data-term="${term}" aria-label="Definition">i</button>`;
 }

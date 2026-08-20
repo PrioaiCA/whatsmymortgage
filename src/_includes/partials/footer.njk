@@ -1,0 +1,42 @@
+<div class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">
+        <span class="brand-mark" style="width:22px;height:22px;font-size:13px">?</span>
+        <span>What's My Mortgage<span style="color:var(--color-neutral-500);font-weight:400">.ca</span></span>
+      </div>
+      <p style="font-size:13px;opacity:.65;max-width:36ch;margin:0">Free calculators that run the same math a lender runs. Built for Ontario homebuyers and homeowners, not for ad clicks.</p>
+    </div>
+    <div>
+      <h5 class="footer-heading">Calculators</h5>
+      <div class="footer-links">
+        {% for calc in calculators %}
+        <a href="/{{ calc.slug }}/">{{ calc.navTitle }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <div>
+      <h5 class="footer-heading">Learn</h5>
+      <div class="footer-links">
+        <a href="/learn/">All articles</a>
+        <a href="/mortgage-glossary/">Jargon, decoded</a>
+        <a href="/what-happens-next/">What happens next</a>
+        <a href="/what-youll-need/">What you'll need</a>
+      </div>
+    </div>
+    <div>
+      <h5 class="footer-heading">Company</h5>
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/sources/">Sources &amp; method</a>
+        <a href="/contact/">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-legal">
+    <div class="footer-legal-inner">
+      <p style="font-size:11px;opacity:.55;margin:0 0 6px;max-width:70ch">Disclaimer: this site provides calculators for informational purposes only and should not be considered financial advice. Consult a licensed mortgage professional for personalized guidance. Calculations are estimates and may vary based on lender-specific terms.</p>
+      <p style="font-size:11px;opacity:.45;margin:0 0 6px">© {{ buildYear }} WhatsMyMortgage.ca. All rights reserved. <a href="/privacy/" style="color:inherit">Privacy</a> · <a href="/terms/" style="color:inherit">Terms</a></p>
+    </div>
+  </div>
+</div>

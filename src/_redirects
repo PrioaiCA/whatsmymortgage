@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects. Legacy single-page-app paths (if any inbound
+# links exist) fall through to the equivalent new page. Add real 301s here
+# as old paths are discovered — nothing was live at a crawlable URL before
+# this rebuild, so this starts empty of legacy rules.

@@ -1,0 +1,27 @@
+{
+  "name": "whatsmymortgage",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Free mortgage calculators for Ontario, built with the same math a lender uses: what you can afford, renewal options, using home equity, breaking a mortgage early, and renting versus buying.",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve",
+    "og-images": "node scripts/build-og-images.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrioaiCA/whatsmymortgage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrioaiCA/whatsmymortgage/issues"
+  },
+  "homepage": "https://github.com/PrioaiCA/whatsmymortgage#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "sharp": "^0.35.3"
+  }
+}

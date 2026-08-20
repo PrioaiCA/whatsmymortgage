@@ -1,0 +1,75 @@
+// Pure, environment-agnostic renderer for the "Connect me with an agent"
+// lead form. Runs at 11ty build time (to server-render the empty form so
+// crawlers see real markup) and is re-used by the browser controller
+// (assets/js/contact-controller.js) to redraw the form after an error.
+// Consent wording and the "no result is ever gated" rule are unchanged —
+// only an optional intent-qualifier field and honeypot are new.
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+export const CONSENT_TEXT = "MortgageMath.ca and the licensed mortgage agent it connects me with may contact me about mortgage options. I can withdraw consent at any time.";
+
+const DEFAULT_FIELDS = { firstName: '', city: '', email: '', phone: '', consent: false, qualifier: '' };
+
+export function canSubmitFields(f) {
+  return !!(f.firstName && f.firstName.trim() && f.email && f.email.trim() && f.consent);
+}
+
+/**
+ * @param {object} opts
+ * @param {string} opts.id           unique placement id (e.g. "home", "calc")
+ * @param {string} opts.calculatorName
+ * @param {string} [opts.urgency]
+ * @param {{key:string,label:string,options:string[]}} [opts.qualifier] one extra intent-qualifying field
+ * @param {string} [opts.intro]      copy shown above the fields, varies by intent tier
+ * @param {object} [opts.fields]     current field values (defaults to empty)
+ * @param {string} [opts.error]      inline error to display, if any
+ */
+export function renderContactCard(opts) {
+  const { id, calculatorName = '', urgency = '', qualifier = null, intro, error } = opts;
+  const f = { ...DEFAULT_FIELDS, ...(opts.fields || {}) };
+  const disabled = canSubmitFields(f) ? '' : 'disabled';
+  const introText = intro || "These figures use one rate and general guidelines. Every lender sets its own rules on income type, credit, and property, and products differ well beyond rate. MortgageMath can connect you with a licensed mortgage agent who will say which lenders would actually take your file.";
+  return `
+    <div class="contact-card" data-contact-id="${id}" data-calc-name="${esc(calculatorName)}" data-urgency="${esc(urgency)}">
+      <div>
+        <h4 style="margin:0 0 6px">Want a person to look at it?</h4>
+        <p style="font-size:13px;opacity:.75;margin:0;max-width:56ch">${esc(introText)}</p>
+      </div>
+      <div class="contact-fields">
+        <div class="field"><label>First name</label><input class="input" data-contact-field="firstName" value="${esc(f.firstName)}" autocomplete="given-name"/></div>
+        <div class="field"><label>City</label><input class="input" data-contact-field="city" value="${esc(f.city)}" autocomplete="address-level2"/></div>
+        <div class="field"><label>Email</label><input class="input" type="email" data-contact-field="email" value="${esc(f.email)}" autocomplete="email"/></div>
+        <div class="field"><label>Phone (optional)</label><input class="input" data-contact-field="phone" value="${esc(f.phone)}" autocomplete="tel"/></div>
+      </div>
+      ${qualifier ? `
+      <div class="field">
+        <label>${esc(qualifier.label)}</label>
+        <select class="input" data-contact-field="qualifier">
+          <option value="" ${f.qualifier === '' ? 'selected' : ''}>Prefer not to say</option>
+          ${qualifier.options.map(opt => `<option value="${esc(opt)}" ${f.qualifier === opt ? 'selected' : ''}>${esc(opt)}</option>`).join('')}
+        </select>
+      </div>` : ''}
+      <label class="contact-consent">
+        <input type="checkbox" data-contact-consent ${f.consent ? 'checked' : ''} style="margin-top:2px"/>
+        <span>${esc(CONSENT_TEXT)}</span>
+      </label>
+      <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+        <label>Leave this field blank<input type="text" tabindex="-1" autocomplete="off" data-contact-field="company"/></label>
+      </div>
+      ${error ? `<p style="font-size:12px;color:var(--color-accent-700);margin:0" role="alert">${esc(error)}</p>` : ''}
+      <button type="button" class="btn btn-primary btn-block" data-action="contactSubmit" ${disabled} style="justify-content:center;text-align:center">Connect me with an agent</button>
+      <p style="font-size:11px;opacity:.55;margin:0">Optional. Everything above stays on your screen either way — we send your details to one licensed agent, not a list of them.</p>
+    </div>`;
+}
+
+export function renderContactThanks(id) {
+  return `
+    <div class="contact-card" data-contact-id="${id}">
+      <div style="text-align:center;padding:var(--space-4) 0">
+        <h4 style="margin:0 0 6px">That's on its way.</h4>
+        <p style="font-size:13px;opacity:.75;margin:0">A licensed mortgage agent will reach out soon.</p>
+      </div>
+    </div>`;
+}

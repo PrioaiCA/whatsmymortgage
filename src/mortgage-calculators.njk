@@ -1,0 +1,87 @@
+---
+pagination:
+  data: calculators
+  size: 1
+  alias: calc
+permalink: "{{ calc.slug }}/index.html"
+layout: layouts/base.njk
+eleventyComputed:
+  title: "{{ calc.metaTitle }}"
+  description: "{{ calc.metaDescription }}"
+  ogSlug: "{{ calc.slug }}"
+  pageScript: "/assets/js/pages/calc-{{ calc.view }}.js"
+  schema:
+    "@context": "https://schema.org"
+    "@type": "WebApplication"
+    name: "{{ calc.metaTitle }}"
+    description: "{{ calc.metaDescription }}"
+    url: "{{ site.url }}/{{ calc.slug }}/"
+    applicationCategory: "FinanceApplication"
+    isAccessibleForFree: true
+    offers:
+      "@type": "Offer"
+      price: "0"
+      priceCurrency: "CAD"
+---
+<div class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
+  <a class="back-link" href="/">← All calculators</a>
+  <h1 style="margin:var(--space-3) 0 var(--space-6);font-size:32px">{{ calc.h1 }}</h1>
+
+  <div class="calc-layout">
+    <div class="card elev-sm calc-form" id="calc-form">
+      {{ calcForm(calc.view) }}
+    </div>
+    <div class="calc-result-col">
+      <div class="result-card">
+        <div id="result-metrics">{{ calcMetricsHtml(calc.view) }}</div>
+
+        {% if calc.intent == 'high' %}
+        <div class="result-details" id="result-contact" style="padding:var(--space-4)">
+          {{ contactCardHtml({
+            id: 'calc',
+            calculatorName: calc.navTitle,
+            intro: "These figures use one rate and general guidelines. A licensed mortgage agent can tell you which lenders would actually take your file, and what " + (calc.navTitle | lower) + " looks like for you specifically.",
+            qualifier: calc.intentQualifier
+          }) | safe }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% if calc.relatedLearn.length %}
+  <div style="margin-top:var(--space-8)">
+    <h2 style="margin:0 0 var(--space-4);font-size:20px">Worth reading first</h2>
+    <div class="grid-auto-md">
+      {% for slug in calc.relatedLearn %}
+        {% for a in learnArticles %}
+          {% if a.slug == slug %}
+          <a href="/learn/{{ a.slug }}/" class="card click-card" style="padding:var(--space-4);border:1px solid var(--color-divider)">
+            <div class="card-title" style="font-size:15px">{{ a.title }}</div>
+            <p class="card-body" style="margin:6px 0 0">{{ a.readTime }}</p>
+          </a>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if calc.intent == 'medium' %}
+  <div class="container-mid" style="padding:0;margin-top:var(--space-8)">
+    <div class="card" style="padding:var(--space-6);border:1px solid var(--color-divider);background:var(--color-bg)">
+      {{ contactCardHtml({
+        id: 'calc-soft',
+        calculatorName: calc.navTitle,
+        intro: "Want a second opinion on this number? A licensed mortgage agent can walk through your specific numbers, at no cost and with no obligation.",
+        qualifier: calc.intentQualifier
+      }) | safe }}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if calc.intent == 'low' %}
+  {% from "partials/cta.njk" import nextPageBox %}
+  {{ nextPageBox(calc.nextPage) }}
+  {% endif %}
+</div>

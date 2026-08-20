@@ -49,12 +49,16 @@ export function renderResultMetrics(result) {
     </details>`;
 }
 
-export function renderResultCard(result, contactId, calculatorName, urgency) {
+/**
+ * @param {object} result          output of a calc-math compute()
+ * @param {object} contactOpts     forwarded to renderContactCard: {id, calculatorName, urgency, qualifier, intro}
+ */
+export function renderResultCard(result, contactOpts) {
   return `
     <div class="result-card">
       <div id="result-metrics">${renderResultMetrics(result)}</div>
       <div class="result-details" id="result-contact" style="padding:var(--space-4)">
-        ${renderContactCard(contactId, calculatorName, urgency)}
+        ${renderContactCard(contactOpts)}
       </div>
     </div>`;
 }

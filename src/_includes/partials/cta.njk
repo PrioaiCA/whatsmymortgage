@@ -1,0 +1,13 @@
+{# Reusable conversion pieces. Intent tiers (see README / brief §5):
+   high   → contact form directly below the result, situation-specific copy
+   medium → contact form present but softer, placed after explanatory copy
+   low    → no contact form at all; point at the next useful page instead #}
+
+{% macro nextPageBox(nextPage) %}
+{% if nextPage %}
+<div class="card" style="padding:var(--space-4);border:1px solid var(--color-divider);background:var(--color-bg);margin-top:var(--space-6)">
+  <p style="font-size:13px;opacity:.65;margin:0 0 8px">Next</p>
+  <a class="btn btn-secondary" href="{{ nextPage.href }}">{{ nextPage.label }} →</a>
+</div>
+{% endif %}
+{% endmacro %}
