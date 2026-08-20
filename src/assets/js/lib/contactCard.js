@@ -23,19 +23,21 @@ export function canSubmitFields(f) {
  * @param {string} [opts.urgency]
  * @param {{key:string,label:string,options:string[]}} [opts.qualifier] one extra intent-qualifying field
  * @param {string} [opts.intro]      copy shown above the fields, varies by intent tier
+ * @param {string} [opts.ctaLabel]   button label — make it specific to the situation, not generic
  * @param {object} [opts.fields]     current field values (defaults to empty)
  * @param {string} [opts.error]      inline error to display, if any
  */
 export function renderContactCard(opts) {
-  const { id, calculatorName = '', urgency = '', qualifier = null, intro, error } = opts;
+  const { id, calculatorName = '', urgency = '', qualifier = null, intro, ctaLabel, error } = opts;
   const f = { ...DEFAULT_FIELDS, ...(opts.fields || {}) };
   const disabled = canSubmitFields(f) ? '' : 'disabled';
   const introText = intro || "These figures use one rate and general guidelines. Every lender sets its own rules on income type, credit, and property, and products differ well beyond rate. MortgageMath can connect you with a licensed mortgage agent who will say which lenders would actually take your file.";
+  const buttonLabel = ctaLabel || 'Connect me with an agent';
   return `
     <div class="contact-card" data-contact-id="${id}" data-calc-name="${esc(calculatorName)}" data-urgency="${esc(urgency)}">
       <div>
-        <h2 style="margin:0 0 6px;font-size:20px">Want a person to look at it?</h2>
-        <p style="font-size:13px;opacity:.75;margin:0;max-width:56ch">${esc(introText)}</p>
+        <h2 style="margin:0 0 6px;font-size:var(--text-21);letter-spacing:var(--track-21)">Want a person to look at it?</h2>
+        <p style="font-size:var(--text-13);opacity:.75;margin:0;max-width:56ch">${esc(introText)}</p>
       </div>
       <div class="contact-fields">
         <div class="field"><label for="${id}-firstName">First name</label><input id="${id}-firstName" class="input" data-contact-field="firstName" value="${esc(f.firstName)}" autocomplete="given-name"/></div>
@@ -58,9 +60,9 @@ export function renderContactCard(opts) {
       <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
         <label for="${id}-company">Leave this field blank</label><input id="${id}-company" type="text" tabindex="-1" autocomplete="off" data-contact-field="company"/>
       </div>
-      ${error ? `<p style="font-size:12px;color:var(--color-accent-700);margin:0" role="alert">${esc(error)}</p>` : ''}
-      <button type="button" class="btn btn-primary btn-block" data-action="contactSubmit" ${disabled} style="justify-content:center;text-align:center">Connect me with an agent</button>
-      <p style="font-size:11px;opacity:.7;margin:0">Optional. Everything above stays on your screen either way — we send your details to one licensed agent, not a list of them.</p>
+      ${error ? `<p style="font-size:var(--text-13);color:var(--color-accent-700);margin:0" role="alert">${esc(error)}</p>` : ''}
+      <button type="button" class="btn btn-primary btn-block" data-action="contactSubmit" ${disabled} style="justify-content:center;text-align:center">${esc(buttonLabel)}</button>
+      <p class="trust-note">Optional. Free either way. Nothing beyond this submission is stored, it goes to one licensed agent — not a list — and every rule this site uses is <a href="/sources/">published</a>.</p>
     </div>`;
 }
 
@@ -68,8 +70,8 @@ export function renderContactThanks(id) {
   return `
     <div class="contact-card" data-contact-id="${id}">
       <div style="text-align:center;padding:var(--space-4) 0">
-        <h2 style="margin:0 0 6px;font-size:20px">That's on its way.</h2>
-        <p style="font-size:13px;opacity:.75;margin:0">A licensed mortgage agent will reach out soon.</p>
+        <h2 style="margin:0 0 6px;font-size:var(--text-21);letter-spacing:var(--track-21)">That's on its way.</h2>
+        <p style="font-size:var(--text-13);opacity:.75;margin:0">A licensed mortgage agent will reach out soon.</p>
       </div>
     </div>`;
 }

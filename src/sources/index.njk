@@ -5,24 +5,25 @@ canonicalPath: "/sources/"
 ogSlug: "sources"
 layout: layouts/base.njk
 ---
+{# JOB: list every rule this site relies on and where it comes from — reference only, no CTA. #}
 <div class="container-narrow" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
   <a class="back-link" href="/">← All calculators</a>
-  <h1 style="margin:var(--space-3) 0 6px;font-size:32px">Sources &amp; method</h1>
-  <p style="font-size:11px;opacity:.7;margin:0 0 var(--space-3)">Last reviewed August 2026</p>
-  <p style="font-size:15px;opacity:.8;max-width:60ch">Every rule on this site comes from a published federal or provincial source. Nothing is proprietary and nothing is guessed. Where a figure depends on something only a lender can confirm, the calculator says so instead of inventing precision.</p>
+  <h1 style="margin:var(--space-3) 0 6px;font-size:var(--text-28);letter-spacing:var(--track-28)">Sources &amp; method</h1>
+  <p style="font-size:var(--text-13);opacity:.7;margin:0 0 var(--space-3)">Last reviewed August 2026</p>
+  <p style="font-size:var(--text-15);opacity:.8;max-width:60ch">Every rule on this site comes from a published federal or provincial source. Nothing is proprietary and nothing is guessed. Where a figure depends on something only a lender can confirm, the calculator says so instead of inventing precision.</p>
   <hr class="hr"/>
   {% for g in copy.SOURCE_GROUPS %}
   <div style="margin-bottom:var(--space-6)">
-    <h2 style="margin:0 0 4px;font-size:16px">{{ g.title }}</h2>
-    <p style="font-size:12px;opacity:.7;margin:0 0 var(--space-2)">{{ g.note }}</p>
-    {% for l in g.links %}<div style="padding:6px 0;border-bottom:1px solid var(--color-divider);font-size:14px">{{ l }}</div>{% endfor %}
+    <h2 style="margin:0 0 4px;font-size:var(--text-17);letter-spacing:var(--track-17)">{{ g.title }}</h2>
+    <p style="font-size:var(--text-13);opacity:.7;margin:0 0 var(--space-2)">{{ g.note }}</p>
+    {% for l in g.links %}<div style="padding:6px 0;border-bottom:1px solid var(--color-divider);font-size:var(--text-15)">{{ l }}</div>{% endfor %}
   </div>
   {% endfor %}
   <hr class="hr"/>
-  <h2 style="margin:0 0 var(--space-3);font-size:16px">Methodology notes</h2>
+  <h2 style="margin:0 0 var(--space-3);font-size:var(--text-17);letter-spacing:var(--track-17)">Methodology notes</h2>
   {% for m in copy.METHOD_NOTES %}
-  <div style="padding:8px 0;border-bottom:1px solid var(--color-divider);font-size:13px;line-height:1.5"><strong style="font-family:var(--font-heading)">{{ m.t }}</strong> {{ m.d }}</div>
+  <div style="padding:8px 0;border-bottom:1px solid var(--color-divider);font-size:var(--text-13);line-height:1.5"><strong style="font-family:var(--font-heading)">{{ m.t }}</strong> {{ m.d }}</div>
   {% endfor %}
   <hr class="hr"/>
-  <p style="font-size:11px;opacity:.7;line-height:1.6;max-width:64ch">WhatsMyMortgage.ca is an independent educational resource operated by [Legal Entity Name]. It is not a mortgage brokerage, lender, or insurer, and does not arrange, negotiate, or advise on mortgages. Asking to speak with someone connects you with a licensed mortgage agent, with no obligation. Confirm any agent's licence on FSRA's public registry before sharing financial documents. Every figure here is an estimate from the numbers you enter and published guidelines, not an approval, a rate guarantee, or personal advice. Penalties can only be confirmed by your current lender. Rates last reviewed August 2026.</p>
+  <p style="font-size:var(--text-13);opacity:.7;line-height:1.6;max-width:64ch">WhatsMyMortgage.ca is an independent educational resource operated by [Legal Entity Name]. It is not a mortgage brokerage, lender, or insurer, and does not arrange, negotiate, or advise on mortgages. Asking to speak with someone connects you with a licensed mortgage agent, with no obligation. Confirm any agent's licence on FSRA's public registry before sharing financial documents. Every figure here is an estimate from the numbers you enter and published guidelines, not an approval, a rate guarantee, or personal advice. Penalties can only be confirmed by your current lender. Rates last reviewed August 2026.</p>
 </div>

@@ -1,14 +1,18 @@
 import { renderContactCard } from './contactCard.js';
 
-const NOTE_COLOR = { watch: 'var(--color-accent)', good: 'var(--color-neutral-900)', context: 'var(--color-neutral-500)' };
+// Severity reads through value (how dark), not hue — accent is reserved
+// for the page's one primary action, not multiplied across every note.
+const NOTE_COLOR = { watch: 'var(--color-neutral-900)', good: 'var(--color-neutral-600)', context: 'var(--color-neutral-400)' };
 
 function esc(s) {
   return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
 export function renderResultMetrics(result) {
-  const tone = result.tone || 'neutral';
-  const headerBg = tone === 'bad' ? 'var(--color-accent-600)' : 'var(--color-neutral-900)';
+  // The header is always ink, never accent — a bad-news result reads through
+  // the number and wording (already negative/framed as such), not a colored
+  // panel. Accent stays reserved for the page's one primary action.
+  const headerBg = 'var(--color-neutral-900)';
   const notes = result.notes || [];
   const tiles = result.tiles || [];
   const ledgerGroups = result.ledgerGroups || [];

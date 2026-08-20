@@ -3,8 +3,8 @@ title: "What's My Mortgage.ca — Ontario Mortgage Calculators"
 description: "See what you can afford, what your renewal really costs, or what breaking your mortgage would mean — free Ontario calculators, real lender math, no signup."
 canonicalPath: "/"
 ogSlug: "home"
-pageScript: "/assets/js/pages/home.js"
 layout: layouts/base.njk
+intent: low
 schema:
   "@context": "https://schema.org"
   "@type": "WebSite"
@@ -12,190 +12,80 @@ schema:
   url: "https://whatsmymortgage.ca/"
   description: "Free mortgage calculators for Ontario, worked out with the same math a lender uses."
 ---
+{#
+  JOB: route each visitor to the right calculator and the right reading —
+  nothing is answered or explained on this page itself.
+#}
 <div class="hero container-mid">
   <h1>What's my mortgage?</h1>
-  <p>Answers about buying, renewing, refinancing, or renting, worked out with the same math a lender uses. Tap the <span class="info-dot">i</span> beside any term you don't recognize.</p>
-  <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)">
-    <a class="btn btn-primary" href="/mortgage-affordability-calculator/">See what you can afford</a>
-    <a class="btn btn-secondary" href="/learn/">Start from the beginning</a>
-  </div>
-  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--space-6)">
-    {% for b in copy.TRUST_BADGES %}<span class="tag tag-outline">{{ b }}</span>{% endfor %}
-  </div>
+  <p>Free calculators for Ontario homebuyers and homeowners, built on the same math a lender uses.</p>
 </div>
 
-<div class="section-shaded">
-  <div class="section container">
-    <h2 style="margin:0 0 6px">Where are you right now?</h2>
-    <p style="font-size:14px;opacity:.65;margin:0 0 var(--space-4);max-width:56ch">Pick the sentence closest to your situation. It opens the right calculator and the right reading.</p>
-    <div class="grid-auto">
-      <div class="card elev-sm" style="padding:var(--space-4)">
-        <a href="/mortgage-affordability-calculator/" style="text-decoration:none;color:inherit">
-          <div class="card-title" style="margin-bottom:6px">I'm thinking about buying</div>
-          <p class="card-body" style="margin:0">See what you could realistically afford.</p>
-        </a>
-        <a href="/learn/what-a-mortgage-actually-is/" style="font-size:12px;font-weight:800;font-family:var(--font-heading)">Or read the basics first →</a>
-      </div>
-      <div class="card elev-sm" style="padding:var(--space-4)">
-        <a href="/mortgage-renewal-calculator/" style="text-decoration:none;color:inherit">
-          <div class="card-title" style="margin-bottom:6px">My mortgage is renewing soon</div>
-          <p class="card-body" style="margin:0">Check what your bank's offer actually costs.</p>
-        </a>
-        <a href="/learn/term-vs-amortization/" style="font-size:12px;font-weight:800;font-family:var(--font-heading)">Or read about renewals first →</a>
-      </div>
-      <div class="card elev-sm" style="padding:var(--space-4)">
-        <a href="/mortgage-refinance-calculator/" style="text-decoration:none;color:inherit">
-          <div class="card-title" style="margin-bottom:6px">I'm wondering about refinancing</div>
-          <p class="card-body" style="margin:0">See what tapping your equity would free up.</p>
-        </a>
-        <a href="/learn/down-payment-and-loan-to-value/" style="font-size:12px;font-weight:800;font-family:var(--font-heading)">Or read about equity first →</a>
-      </div>
-      <div class="card elev-sm" style="padding:var(--space-4)">
-        <a href="/rent-vs-buy-calculator/" style="text-decoration:none;color:inherit">
-          <div class="card-title" style="margin-bottom:6px">I'm renting and not sure</div>
-          <p class="card-body" style="margin:0">Compare renting and buying over five years.</p>
-        </a>
-        <a href="/learn/what-a-mortgage-actually-is/" style="font-size:12px;font-weight:800;font-family:var(--font-heading)">Or read the basics first →</a>
-      </div>
-      <a href="/learn/" class="card elev-sm click-card" style="padding:var(--space-4)">
-        <div class="card-title" style="margin-bottom:6px">I just want to understand what I have</div>
-        <p class="card-body" style="margin:0">Start with the basics, no calculator needed yet.</p>
+<div class="section container" id="situations">
+  <h2 style="margin:0 0 6px">Where are you right now?</h2>
+  <p style="opacity:.65;margin:0 0 var(--space-6);max-width:56ch">Pick the sentence closest to your situation.</p>
+  <div class="journey-grid">
+    <div class="journey-card">
+      <a href="/mortgage-affordability-calculator/" class="journey-link">
+        <div class="journey-title">I'm thinking about buying</div>
+        <p class="journey-desc">See what you could realistically afford.</p>
       </a>
+      <a href="/learn/what-a-mortgage-actually-is/" class="journey-read">Or read the basics first →</a>
     </div>
-
-    <div style="margin-top:var(--space-8)">
-      <h2 style="margin:0 0 6px">Ask {{ site.personaName }}</h2>
-      <p style="font-size:14px;opacity:.65;margin:0 0 var(--space-4);max-width:56ch">{{ site.personaName }} explains anything on this site in plain language, and points you at the right calculator. Available on every page.</p>
-      <div class="card elev-sm" style="padding:var(--space-6);background:var(--color-bg)">
-        <div style="display:flex;gap:var(--space-2);flex-wrap:wrap">
-          <input id="ask-input" class="input" style="flex:1 1 260px" placeholder='Ask a question, like "what is loan-to-value?"'/>
-          <button type="button" class="btn btn-primary" id="ask-submit">Ask</button>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--space-4)">
-          {% for chip in copy.ASK_CHIPS %}
-            {% if chip.jargon %}
-            <a class="tag tag-neutral" style="text-decoration:none" href="/mortgage-glossary/#{{ chip.jargon }}">{{ chip.label }}</a>
-            {% else %}
-            <button type="button" class="tag tag-neutral" style="cursor:pointer;border:none" data-ask-query="{{ chip.query }}">{{ chip.label }}</button>
-            {% endif %}
-          {% endfor %}
-        </div>
-        <p id="ask-error" hidden style="font-size:13px;opacity:.65;margin:var(--space-4) 0 0">{{ site.personaName }} isn't sure about that one yet. Try a calculator from the list below instead.</p>
-      </div>
+    <div class="journey-card">
+      <a href="/mortgage-renewal-calculator/" class="journey-link">
+        <div class="journey-title">My mortgage is renewing soon</div>
+        <p class="journey-desc">Check what your bank's offer actually costs.</p>
+      </a>
+      <a href="/learn/term-vs-amortization/" class="journey-read">Or read about renewals first →</a>
     </div>
-  </div>
-</div>
-
-<div class="section container" id="calc-grid">
-  <h2 style="margin:0 0 var(--space-4)">Every calculator</h2>
-  <div class="grid-auto-lg">
-    {% for calc in calculators %}
-    <a href="/{{ calc.slug }}/" class="card elev-sm click-card" style="padding:var(--space-4)">
-      <span class="calc-glyph">{{ calc.glyph }}</span>
-      <div class="card-title">{{ calc.navTitle }}</div>
-      <p class="card-body">{{ calc.cardDesc }}</p>
-      <div class="calc-open">Open →</div>
-    </a>
-    {% endfor %}
+    <div class="journey-card">
+      <a href="/mortgage-refinance-calculator/" class="journey-link">
+        <div class="journey-title">I'm wondering about refinancing</div>
+        <p class="journey-desc">See what tapping your equity would free up.</p>
+      </a>
+      <a href="/learn/down-payment-and-loan-to-value/" class="journey-read">Or read about equity first →</a>
+    </div>
+    <div class="journey-card">
+      <a href="/rent-vs-buy-calculator/" class="journey-link">
+        <div class="journey-title">I'm renting and not sure</div>
+        <p class="journey-desc">Compare renting and buying over five years.</p>
+      </a>
+      <a href="/learn/what-a-mortgage-actually-is/" class="journey-read">Or read the basics first →</a>
+    </div>
+    <div class="journey-card">
+      <a href="/learn/" class="journey-link">
+        <div class="journey-title">I just want to understand what I have</div>
+        <p class="journey-desc">Start with the basics, no calculator needed yet.</p>
+      </a>
+      <a href="/mortgage-glossary/" class="journey-read">Or browse the glossary →</a>
+    </div>
   </div>
 </div>
 
 <div class="section-shaded">
-  <div class="section container">
-    <h2 style="margin:0 0 var(--space-4)">Dig deeper</h2>
-    <div class="tabs">
-      <div class="seg" style="margin-bottom:var(--space-6);display:inline-flex">
-        <label class="seg-opt"><input type="radio" name="hometab" id="tab-learn" checked/>Learn</label>
-        <label class="seg-opt"><input type="radio" name="hometab" id="tab-process"/>Process</label>
-        <label class="seg-opt"><input type="radio" name="hometab" id="tab-rates"/>Rates &amp; mistakes</label>
-        <label class="seg-opt"><input type="radio" name="hometab" id="tab-sources"/>Sources &amp; roadmap</label>
+  <div class="section container-mid">
+    <h2 style="margin:0 0 var(--space-6)">How it works</h2>
+    <div class="how-it-works">
+      <div class="how-step">
+        <div class="how-n">1</div>
+        <div class="how-text">Answer a few sliders about your situation</div>
       </div>
-
-      <div class="tab-panel panel-learn">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-4)">
-          <h3 style="margin:0">Learn the basics</h3>
-          <a href="/learn/" style="font-size:13px;font-weight:800;font-family:var(--font-heading)">See everything →</a>
-        </div>
-        <div class="grid-auto-md" style="margin-bottom:var(--space-6)">
-          {% for a in learnArticles %}
-          <a href="/learn/{{ a.slug }}/" class="card click-card" style="padding:var(--space-4);border:1px solid var(--color-divider);background:var(--color-bg)">
-            <div class="card-title" style="font-size:15px">{{ a.title }}</div>
-            <p class="card-body" style="margin:6px 0 0">{{ a.readTime }}</p>
-          </a>
-          {% endfor %}
-        </div>
-        <h3 style="margin:0 0 var(--space-4)">What you'll need</h3>
-        <div class="grid-auto-md">
-          {% for g in copy.DOC_GROUPS %}
-          <div class="card" style="padding:var(--space-4);border:1px solid var(--color-divider);background:var(--color-bg)">
-            <div class="card-title" style="font-size:15px;margin-bottom:8px">{{ g.title }}</div>
-            {% for item in g.items %}<div style="font-size:13px;padding:5px 0;border-bottom:1px solid var(--color-divider);opacity:.8">{{ item }}</div>{% endfor %}
-          </div>
-          {% endfor %}
-        </div>
+      <div class="how-step">
+        <div class="how-n">2</div>
+        <div class="how-text">See your real number immediately — nothing is ever gated</div>
       </div>
-
-      <div class="tab-panel panel-process">
-        <h3 style="margin:0 0 var(--space-2)">What happens next</h3>
-        <p style="font-size:14px;opacity:.65;margin:0 0 var(--space-4);max-width:56ch">The actual sequence, start to finish. <a href="/what-happens-next/">Full timeline →</a></p>
-        <div class="process-strip">
-          {% for step in copy.PROCESS_STEPS %}
-          <div class="process-step">
-            <div class="process-n">{{ step.n }}</div>
-            <div class="process-title">{{ step.title }}</div>
-            <p class="process-blurb">{{ step.blurb }}</p>
-            <div class="process-timing">{{ step.timing }}</div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="tab-panel panel-rates">
-        <div class="card elev-sm" style="padding:var(--space-6);display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:space-between;align-items:flex-start;background:var(--color-bg);margin-bottom:var(--space-6)">
-          <div style="flex:1 1 320px">
-            <h3 style="margin:0 0 6px">Rates, translated</h3>
-            <p style="font-size:14px;opacity:.75;margin:0;max-width:56ch">{{ copy.RATE_NOTE }}</p>
-          </div>
-          <div style="text-align:right">
-            <div style="font-size:11px;opacity:.5;margin-bottom:4px">Last updated</div>
-            <div style="font-family:var(--font-heading);font-weight:800;font-size:14px">August 2026</div>
-          </div>
-        </div>
-        <h3 style="margin:0 0 var(--space-4)">Common mistakes</h3>
-        <div class="grid-auto-md">
-          {% for m in copy.MISTAKES %}
-          <div class="mistake">
-            <div class="mistake-title">{{ m.title }}</div>
-            <p class="mistake-body">{{ m.body }}</p>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <div class="tab-panel panel-sources">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-3)">
-          <h3 style="margin:0">Built on published sources</h3>
-          <a href="/sources/" style="font-size:13px;font-weight:800;font-family:var(--font-heading)">Full methodology →</a>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);margin-bottom:var(--space-6)">
-          {% for src in copy.SOURCE_NAMES %}<span style="font-size:13px;padding:8px 12px;border:1px solid var(--color-divider);background:var(--color-bg)">{{ src }}</span>{% endfor %}
-        </div>
-        <h3 style="margin:0 0 var(--space-4)">What's live, what's coming</h3>
-        <div style="border-top:1px solid var(--color-divider)">
-          {% for r in copy.ROADMAP %}
-          <div class="roadmap-row">
-            <span>{{ r.label }}</span>
-            <span class="tag {{ r.tagClass }}">{{ r.status }}</span>
-          </div>
-          {% endfor %}
-        </div>
+      <div class="how-step">
+        <div class="how-n">3</div>
+        <div class="how-text">Talk to a licensed agent, only if you want to</div>
       </div>
     </div>
+    <a href="/what-happens-next/" class="btn-ghost" style="display:inline-block;margin-top:var(--space-4);font-size:var(--text-13);font-weight:800;font-family:var(--font-heading)">See the full process →</a>
   </div>
 </div>
 
-<div class="section container-narrow">
-  <h2 style="margin:0 0 6px">Talk to a person</h2>
-  <p style="font-size:14px;opacity:.65;margin:0 0 var(--space-4);max-width:56ch">Optional, and separate from every tool on this site. No calculator result ever requires this.</p>
-  {{ contactCardHtml({ id: 'home', calculatorName: 'General inquiry' }) | safe }}
+<div class="section container-mid">
+  <div class="trust-strip">
+    {% for b in copy.TRUST_BADGES %}<span class="trust-item">{{ b }}</span>{% endfor %}
+  </div>
 </div>
