@@ -52,7 +52,10 @@ export function initCalcPage(view, makeDefaultState, compute) {
     const t = e.target;
     if (!t.matches('[data-toggle]')) return;
     const { key } = t.dataset;
-    state[key] = t.hasAttribute('data-numeric') ? Number(t.dataset.value) : t.dataset.value;
+    // A <select> (many options, e.g. city) carries the chosen value on
+    // itself; a radio in a segmented group carries it via data-value.
+    const raw = t.tagName === 'SELECT' ? t.value : t.dataset.value;
+    state[key] = t.hasAttribute('data-numeric') ? Number(raw) : raw;
     patchResult();
     trackCompletion();
   });

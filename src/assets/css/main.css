@@ -301,15 +301,6 @@ select.input { appearance: auto; cursor: pointer; }
 .how-n { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--color-accent-600); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 800; font-size: var(--text-13); }
 .how-text { font-size: var(--text-15); line-height: 1.5; padding-top: 3px; }
 
-/* — trust strip — plain text, no badges/borders — */
-.trust-strip { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-.trust-item {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: var(--text-13); font-weight: 700; color: var(--color-neutral-800);
-  background: var(--color-surface); border-radius: 999px; padding: 7px 14px;
-}
-.trust-item svg { color: var(--color-accent-600); flex: none; }
-
 /* — result card — */
 .result-card { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--color-divider); border-radius: var(--radius-lg); overflow: hidden; }
 .result-header { padding: var(--space-6); position: relative; }

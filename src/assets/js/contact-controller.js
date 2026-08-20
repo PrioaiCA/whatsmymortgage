@@ -39,7 +39,7 @@ async function submit(container) {
     email: fields.email,
     phone: fields.phone,
     consent: true,
-    consentText: "MortgageMath.ca and the licensed mortgage agent it connects me with may contact me about mortgage options. I can withdraw consent at any time.",
+    consentText: "What's My Mortgage and the licensed mortgage agent it connects me with may contact me about mortgage options. I can withdraw consent at any time.",
     intentQualifier: fields.qualifier || null,
     calculator: container.dataset.calcName || 'unknown',
     urgency: container.dataset.urgency || 'unspecified',

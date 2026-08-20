@@ -1,7 +1,5 @@
 // Static copy and reference data for WhatsMyMortgage.ca.
 
-export const TRUST_BADGES = ['Free', 'No signup', 'Nothing stored', 'Sources published'];
-
 export const DOC_GROUPS = [
   { title: "If you're salaried", items: ['Recent pay stub', 'T4 or T4A, last 2 years', 'Job letter confirming salary'] },
   { title: "If you're self-employed", items: ['T1 Generals, last 2 years', 'Notice of Assessment, last 2 years', 'Business licence or incorporation docs'] },

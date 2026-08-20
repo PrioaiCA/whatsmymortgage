@@ -8,7 +8,7 @@ function esc(s) {
   return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
-export const CONSENT_TEXT = "MortgageMath.ca and the licensed mortgage agent it connects me with may contact me about mortgage options. I can withdraw consent at any time.";
+export const CONSENT_TEXT = "What's My Mortgage and the licensed mortgage agent it connects me with may contact me about mortgage options. I can withdraw consent at any time.";
 
 const DEFAULT_FIELDS = { firstName: '', city: '', email: '', phone: '', consent: false, qualifier: '' };
 
@@ -31,7 +31,7 @@ export function renderContactCard(opts) {
   const { id, calculatorName = '', urgency = '', qualifier = null, intro, ctaLabel, error } = opts;
   const f = { ...DEFAULT_FIELDS, ...(opts.fields || {}) };
   const disabled = canSubmitFields(f) ? '' : 'disabled';
-  const introText = intro || "These figures use one rate and general guidelines. Every lender sets its own rules on income type, credit, and property, and products differ well beyond rate. MortgageMath can connect you with a licensed mortgage agent who will say which lenders would actually take your file.";
+  const introText = intro || "These figures use one rate and general guidelines. Every lender sets its own rules on income type, credit, and property, and products differ well beyond rate. What's My Mortgage can connect you with a licensed mortgage agent who will say which lenders would actually take your file.";
   const buttonLabel = ctaLabel || 'Connect me with an agent';
   return `
     <div class="contact-card" data-contact-id="${id}" data-calc-name="${esc(calculatorName)}" data-urgency="${esc(urgency)}">
