@@ -2,10 +2,12 @@
 // page (`<button class="term-btn" data-term="...">`). Hover to preview,
 // click to pin, Escape/outside-click/scroll to dismiss.
 import { TERMS } from './lib/content.js';
+import { track } from './lib/analytics.js';
 
 let pinnedTerm = null;
 let hoveredTerm = null;
 let el = null;
+const trackedTerms = new Set();
 
 function ensureEl() {
   if (el) return el;
@@ -30,6 +32,10 @@ function render() {
   }
   const entry = TERMS[key] || ['Term', 'Definition coming soon.'];
   node.innerHTML = `<div class="term-tooltip-title">${escapeHtml(entry[0])}</div><div class="term-tooltip-def">${escapeHtml(entry[1])}</div>`;
+  if (!trackedTerms.has(key)) {
+    trackedTerms.add(key);
+    track('glossary_interaction', { term: key, path: location.pathname });
+  }
   node.hidden = false;
   const btn = document.querySelector(`.term-btn[data-term="${cssEscape(key)}"]`);
   if (!btn) { node.hidden = true; return; }

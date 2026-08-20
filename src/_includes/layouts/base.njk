@@ -31,7 +31,7 @@
 <script type="application/ld+json">{{ schema | jsonify | safe }}</script>
 {% endif %}
 </head>
-<body>
+<body{% if intent %} data-intent="{{ intent }}"{% endif %}>
 {% include "partials/nav.njk" %}
 <main id="main-content">
 {{ content | safe }}

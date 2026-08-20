@@ -1,6 +1,7 @@
 import { renderResultMetrics } from './lib/resultCard.js';
 import { formatDisplay } from './lib/format.js';
 import { setLeadContext } from './leadContext.js';
+import { track } from './lib/analytics.js';
 
 /**
  * Wires one calculator page's already-server-rendered form to live updates.
@@ -14,6 +15,13 @@ export function initCalcPage(view, makeDefaultState, compute) {
   if (!form || !metricsEl) return;
 
   const state = makeDefaultState();
+  let completed = false;
+
+  function trackCompletion() {
+    if (completed) return;
+    completed = true;
+    track('calculator_complete', { calculator: view, path: location.pathname });
+  }
 
   function publishContext(result) {
     setLeadContext({ calculator: view, inputs: { ...state }, result: { label: result.label, bigValue: result.bigValue, subtitle: result.subtitle } });
@@ -37,6 +45,7 @@ export function initCalcPage(view, makeDefaultState, compute) {
     const disp = document.getElementById('disp-' + key);
     if (disp) disp.textContent = formatDisplay(format, state[key]);
     patchResult();
+    trackCompletion();
   });
 
   form.addEventListener('change', (e) => {
@@ -45,5 +54,6 @@ export function initCalcPage(view, makeDefaultState, compute) {
     const { key } = t.dataset;
     state[key] = t.hasAttribute('data-numeric') ? Number(t.dataset.value) : t.dataset.value;
     patchResult();
+    trackCompletion();
   });
 }

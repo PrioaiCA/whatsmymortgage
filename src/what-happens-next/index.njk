@@ -4,26 +4,28 @@ description: "The real sequence from first conversation to closing day: pre-appr
 canonicalPath: "/what-happens-next/"
 ogSlug: "what-happens-next"
 layout: layouts/base.njk
+intent: medium
 ---
+{# JOB: lay out the real sequence from application to closing, then offer one softer next step — medium intent, no hard ask up front. #}
 <div class="container-narrow" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
   <a class="back-link" href="/">← All calculators</a>
-  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:32px">What happens after you apply?</h1>
-  <p style="font-size:15px;opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">The actual sequence, start to finish.</p>
+  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:var(--text-28);letter-spacing:var(--track-28)">What happens after you apply?</h1>
+  <p style="font-size:var(--text-15);opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">The actual sequence, start to finish.</p>
 
   <div style="display:flex;flex-direction:column;gap:0;border-top:2px solid var(--color-divider)">
     {% for step in copy.PROCESS_STEPS %}
     <div style="display:flex;gap:var(--space-4);padding:var(--space-4) 0;border-bottom:1px solid var(--color-divider);align-items:baseline;flex-wrap:wrap">
-      <div style="font-family:var(--font-heading);font-weight:800;font-size:13px;color:var(--color-accent-700);width:28px;flex:none">{{ step.n }}</div>
+      <div style="font-family:var(--font-heading);font-weight:800;font-size:var(--text-13);color:var(--color-neutral-700);width:28px;flex:none">{{ step.n }}</div>
       <div style="flex:1 1 240px">
-        <div style="font-family:var(--font-heading);font-weight:800;font-size:16px;margin-bottom:4px">{{ step.title }}</div>
-        <p style="font-size:14px;opacity:.75;line-height:1.6;margin:0 0 4px">{{ step.blurb }}</p>
-        <div style="font-size:12px;opacity:.7">{{ step.timing }}</div>
+        <div style="font-family:var(--font-heading);font-weight:800;font-size:var(--text-17);letter-spacing:var(--track-17);margin-bottom:4px">{{ step.title }}</div>
+        <p style="font-size:var(--text-15);opacity:.75;line-height:1.6;margin:0 0 4px">{{ step.blurb }}</p>
+        <div style="font-size:var(--text-13);opacity:.7">{{ step.timing }}</div>
       </div>
     </div>
     {% endfor %}
   </div>
 
-  <div class="card" style="padding:var(--space-6);border:1px solid var(--color-divider);background:var(--color-bg);margin-top:var(--space-8)">
+  <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
     {{ contactCardHtml({
       id: 'process',
       calculatorName: 'What happens next',
@@ -31,15 +33,8 @@ layout: layouts/base.njk
     }) | safe }}
   </div>
 
-  <div style="margin-top:var(--space-6)">
-    <h2 style="margin:0 0 var(--space-4);font-size:18px">Where to start</h2>
-    <div class="grid-auto-md">
-      <a href="/mortgage-affordability-calculator/" class="card click-card" style="padding:var(--space-4);border:1px solid var(--color-divider)">
-        <div class="card-title" style="font-size:15px">See what you can afford</div>
-      </a>
-      <a href="/what-youll-need/" class="card click-card" style="padding:var(--space-4);border:1px solid var(--color-divider)">
-        <div class="card-title" style="font-size:15px">See what documents you'll need</div>
-      </a>
-    </div>
+  <div class="next-links" style="margin-top:var(--space-8)">
+    <a href="/mortgage-affordability-calculator/" class="next-link">See what you can afford →</a>
+    <a href="/what-youll-need/" class="next-link">See what documents you'll need →</a>
   </div>
 </div>

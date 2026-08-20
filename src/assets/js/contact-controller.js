@@ -1,6 +1,7 @@
 import { renderContactCard, renderContactThanks, canSubmitFields } from './lib/contactCard.js';
 import { getAttribution } from './attribution.js';
 import { getLeadContext } from './leadContext.js';
+import { track } from './lib/analytics.js';
 
 // Per-placement in-memory field state, keyed by data-contact-id. Lets the
 // homepage's general form and a calculator's embedded form live on the same
@@ -59,6 +60,7 @@ async function submit(container) {
       body: JSON.stringify(payload)
     });
     if (!res.ok) throw new Error('request failed');
+    track('lead_submit', { placement: id, calculator: container.dataset.calcName || 'unknown', path: location.pathname });
     container.outerHTML = renderContactThanks(id);
   } catch (e) {
     const fresh = document.createElement('div');

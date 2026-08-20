@@ -10,6 +10,7 @@ eleventyComputed:
   title: "{{ calc.metaTitle }}"
   description: "{{ calc.metaDescription }}"
   ogSlug: "{{ calc.slug }}"
+  intent: "{{ calc.intent }}"
   pageScript: "/assets/js/pages/calc-{{ calc.view }}.js"
   schema:
     "@context": "https://schema.org"
@@ -24,23 +25,25 @@ eleventyComputed:
       price: "0"
       priceCurrency: "CAD"
 ---
-<div class="container" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
+{#
+  JOB: produce one number for this situation, in plain terms explain what
+  drives it, and offer exactly one next step. Four zones only — input,
+  answer, explanation, next — nothing else belongs on this page.
+#}
+<div class="container calc-page">
   <a class="back-link" href="/">← All calculators</a>
-  <h1 style="margin:var(--space-3) 0 var(--space-6);font-size:32px">{{ calc.h1 }}</h1>
+  <h1 class="calc-h1">{{ calc.h1 }}</h1>
 
   <div class="calc-layout">
-    <div class="card elev-sm calc-form" id="calc-form">
-      {{ calcForm(calc.view) }}
-    </div>
-    <div class="calc-result-col">
+    <div class="calc-answer-zone">
       <div class="result-card">
         <div id="result-metrics">{{ calcMetricsHtml(calc.view) }}</div>
-
         {% if calc.intent == 'high' %}
         <div class="result-details" id="result-contact" style="padding:var(--space-4)">
           {{ contactCardHtml({
             id: 'calc',
             calculatorName: calc.navTitle,
+            ctaLabel: calc.ctaLabel,
             intro: "These figures use one rate and general guidelines. A licensed mortgage agent can tell you which lenders would actually take your file, and what " + (calc.navTitle | lower) + " looks like for you specifically.",
             qualifier: calc.intentQualifier
           }) | safe }}
@@ -48,39 +51,37 @@ eleventyComputed:
         {% endif %}
       </div>
     </div>
-  </div>
-
-  {% if calc.relatedLearn.length %}
-  <div style="margin-top:var(--space-8)">
-    <h2 style="margin:0 0 var(--space-4);font-size:20px">Worth reading first</h2>
-    <div class="grid-auto-md">
-      {% for slug in calc.relatedLearn %}
-        {% for a in learnArticles %}
-          {% if a.slug == slug %}
-          <a href="/learn/{{ a.slug }}/" class="card click-card" style="padding:var(--space-4);border:1px solid var(--color-divider)">
-            <div class="card-title" style="font-size:15px">{{ a.title }}</div>
-            <p class="card-body" style="margin:6px 0 0">{{ a.readTime }}</p>
-          </a>
-          {% endif %}
-        {% endfor %}
-      {% endfor %}
+    <div class="calc-input-zone card elev-sm" id="calc-form">
+      {{ calcForm(calc.view) }}
     </div>
   </div>
-  {% endif %}
 
-  {% if calc.intent == 'medium' %}
-  <div class="container-mid" style="padding:0;margin-top:var(--space-8)">
-    <div class="card" style="padding:var(--space-6);border:1px solid var(--color-divider);background:var(--color-bg)">
+  <div class="container-mid calc-explanation-zone">
+    <h2>What this number means</h2>
+    <p>{{ calc.explainer }}</p>
+
+    {% if calc.intent == 'medium' %}
+    <div class="card" style="padding:var(--space-6);border:1px solid var(--color-divider);background:var(--color-bg);margin-top:var(--space-6)">
       {{ contactCardHtml({
         id: 'calc-soft',
         calculatorName: calc.navTitle,
+        ctaLabel: calc.ctaLabel,
         intro: "Want a second opinion on this number? A licensed mortgage agent can walk through your specific numbers, at no cost and with no obligation.",
         qualifier: calc.intentQualifier
       }) | safe }}
     </div>
+    {% endif %}
   </div>
-  {% endif %}
 
-  {% from "partials/cta.njk" import nextPageBox %}
-  {{ nextPageBox(calc.nextPage) }}
+  <div class="container-mid calc-next-zone">
+    <h2>Next</h2>
+    <div class="next-links">
+      {% for a in learnArticles %}
+        {% if a.slug == calc.relatedArticle %}
+        <a href="/learn/{{ a.slug }}/" class="next-link">{{ a.title }} →</a>
+        {% endif %}
+      {% endfor %}
+      <a href="{{ calc.nextPage.href }}" class="next-link">{{ calc.nextPage.label }} →</a>
+    </div>
+  </div>
 </div>

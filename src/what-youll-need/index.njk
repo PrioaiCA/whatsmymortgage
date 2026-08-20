@@ -4,22 +4,24 @@ description: "The exact documents lenders ask for, by how you're paid: salaried,
 canonicalPath: "/what-youll-need/"
 ogSlug: "what-youll-need"
 layout: layouts/base.njk
+intent: high
 ---
+{# JOB: list the documents a lender will ask for, grouped by how you're paid, then offer a direct next step — high intent, contact sits right below the checklist. #}
 <div class="container-narrow" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
   <a class="back-link" href="/">← All calculators</a>
-  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:32px">What documents will you need?</h1>
-  <p style="font-size:15px;opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">What a lender actually asks for depends on how you're paid. Have these ready before you apply and the process moves faster.</p>
+  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:var(--text-28);letter-spacing:var(--track-28)">What documents will you need?</h1>
+  <p style="font-size:var(--text-15);opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">What a lender actually asks for depends on how you're paid. Have these ready before you apply and the process moves faster.</p>
 
   <div class="grid-auto-md">
     {% for g in copy.DOC_GROUPS %}
     <div class="card elev-sm" style="padding:var(--space-4);background:var(--color-bg)">
-      <div class="card-title" style="font-size:16px;margin-bottom:8px">{{ g.title }}</div>
-      {% for item in g.items %}<div style="font-size:14px;padding:6px 0;border-bottom:1px solid var(--color-divider)">{{ item }}</div>{% endfor %}
+      <div class="card-title" style="font-size:var(--text-17);letter-spacing:var(--track-17);margin-bottom:8px">{{ g.title }}</div>
+      {% for item in g.items %}<div style="font-size:var(--text-15);padding:6px 0;border-bottom:1px solid var(--color-divider)">{{ item }}</div>{% endfor %}
     </div>
     {% endfor %}
   </div>
 
-  <div class="card" style="padding:var(--space-6);border:1px solid var(--color-divider);background:var(--color-bg);margin-top:var(--space-8)">
+  <div style="margin-top:var(--space-8);padding-top:var(--space-6);border-top:1px solid var(--color-divider)">
     {{ contactCardHtml({
       id: 'docs',
       calculatorName: 'What documents you will need',

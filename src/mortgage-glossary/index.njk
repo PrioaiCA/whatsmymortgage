@@ -5,11 +5,14 @@ canonicalPath: "/mortgage-glossary/"
 ogSlug: "mortgage-glossary"
 layout: layouts/base.njk
 noJs: true
+intent: low
+pageScript: "/assets/js/pages/analytics-lite.js"
 ---
+{# JOB: define every term used across the calculators — scannable, no CTA, no marketing furniture. #}
 <div class="container-narrow" style="padding-top:var(--space-6);padding-bottom:var(--space-8)">
   <a class="back-link" href="/">← All calculators</a>
-  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:32px">Mortgage glossary, decoded</h1>
-  <p style="font-size:15px;opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">Every term used across the calculators, in plain language. Follow a link from any calculator straight to its definition here.</p>
+  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:var(--text-28);letter-spacing:var(--track-28)">Mortgage glossary, decoded</h1>
+  <p style="font-size:var(--text-15);opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">Every term used across the calculators, in plain language. Follow a link from any calculator straight to its definition here.</p>
   <div>
     {% for t in copy.TERMS | termsSorted %}
     <div class="jargon-item" id="{{ t.key }}">
@@ -19,8 +22,7 @@ noJs: true
     {% endfor %}
   </div>
 
-  <div class="card" style="padding:var(--space-4);border:1px solid var(--color-divider);background:var(--color-bg);margin-top:var(--space-6)">
-    <p style="font-size:13px;opacity:.65;margin:0 0 8px">Next</p>
-    <a class="btn btn-secondary" href="/learn/">Read the full explainers →</a>
+  <div class="next-links" style="margin-top:var(--space-10)">
+    <a href="/learn/" class="next-link">Read the full explainers →</a>
   </div>
 </div>
