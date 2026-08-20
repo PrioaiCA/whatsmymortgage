@@ -17,7 +17,18 @@ export function renderCalcForm(view, s, fields, sourcesHref) {
           data-slider data-calc-view="${view}" data-key="${f.key}" data-format="${f.format}"
           aria-label="${esc(f.label)}"/>
       </div>`).join('')}
-    ${fields.toggles.map(t => `
+    ${fields.toggles.map(t => t.select ? `
+      <div class="toggle-row">
+        <label class="toggle-label" for="select-${view}-${t.key}">${esc(t.label)}${t.term ? termButton(t.term) : ''}</label>
+        <select class="input" id="select-${view}-${t.key}"
+          data-toggle data-calc-view="${view}" data-key="${t.key}" ${t.numeric ? 'data-numeric' : ''}>
+          ${(() => { let matched = false; return t.options.map(opt => {
+            const isSelected = !matched && String(s[t.key]) === String(opt.value);
+            if (isSelected) matched = true;
+            return `<option value="${opt.value}" ${isSelected ? 'selected' : ''}>${esc(opt.label)}</option>`;
+          }).join(''); })()}
+        </select>
+      </div>` : `
       <div class="toggle-row">
         <div class="toggle-label">${esc(t.label)}${t.term ? termButton(t.term) : ''}</div>
         <div class="seg">

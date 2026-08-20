@@ -1,3 +1,33 @@
+// Every Ontario location the math actually distinguishes between is just
+// "Toronto" or "not Toronto" — Toronto is the only municipality with its
+// own land transfer tax on top of the provincial one. Listing recognizable
+// cities instead of a generic "905 area" label is purely about a visitor
+// seeing their own city, not a change in what gets calculated: every
+// non-Toronto option below still resolves to the same '905' value.
+export const ONTARIO_LOCATIONS = [
+  { value: 'toronto', label: 'Toronto' },
+  { value: '905', label: 'Elsewhere in Ontario' },
+  { value: '905', label: 'Barrie' },
+  { value: '905', label: 'Brampton' },
+  { value: '905', label: 'Burlington' },
+  { value: '905', label: 'Guelph' },
+  { value: '905', label: 'Hamilton' },
+  { value: '905', label: 'Kingston' },
+  { value: '905', label: 'Kitchener' },
+  { value: '905', label: 'London' },
+  { value: '905', label: 'Markham' },
+  { value: '905', label: 'Milton' },
+  { value: '905', label: 'Mississauga' },
+  { value: '905', label: 'Oakville' },
+  { value: '905', label: 'Oshawa' },
+  { value: '905', label: 'Ottawa' },
+  { value: '905', label: 'Richmond Hill' },
+  { value: '905', label: 'St. Catharines' },
+  { value: '905', label: 'Vaughan' },
+  { value: '905', label: 'Waterloo' },
+  { value: '905', label: 'Windsor' }
+];
+
 // Slider/toggle field definitions for each calculator, driving both the
 // form UI and the generic live-update logic in app.js.
 export function getCalcFields(view, s) {
@@ -11,7 +41,7 @@ export function getCalcFields(view, s) {
         { key: 'rate', label: 'Interest rate', term: 'rate', min: 3, max: 7, step: 0.01, format: 'pct2' }
       ],
       toggles: [
-        { key: 'city', label: 'Location', term: '', options: [{ value: '905', label: '905 area' }, { value: 'toronto', label: 'Toronto' }] },
+        { key: 'city', label: 'Location', term: '', select: true, options: ONTARIO_LOCATIONS },
         { key: 'amort', label: 'Amortization', term: 'amort', numeric: true, options: [{ value: 25, label: '25 years' }, { value: 30, label: '30 years' }] }
       ]
     };
@@ -72,7 +102,7 @@ export function getCalcFields(view, s) {
         { key: 'invret', label: 'Annual investment return', term: 'invret', min: 0, max: 12, step: 0.5, format: 'pct2' }
       ],
       toggles: [
-        { key: 'city', label: 'Location', term: '', options: [{ value: '905', label: '905 area' }, { value: 'toronto', label: 'Toronto' }] }
+        { key: 'city', label: 'Location', term: '', select: true, options: ONTARIO_LOCATIONS }
       ]
     };
   }
