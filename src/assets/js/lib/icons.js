@@ -23,3 +23,10 @@ export function iconSvg(name, size = 20) {
   const paths = PATHS[name] || '';
   return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${paths}</svg>`;
 }
+
+// The actual brand mark (house roof + mountain-peak accent) — fixed
+// two-tone brand colors, not currentColor, so it renders identically
+// wherever it's dropped: nav, footer, favicon, OG images.
+export function logoMarkSvg(size = 24) {
+  return `<svg width="${size}" height="${size}" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50,6 L92,42 L92,94 L8,94 L8,42 Z" fill="#14487a"/><path d="M50,50 L70,88 L30,88 Z" fill="#a6600f"/></svg>`;
+}
