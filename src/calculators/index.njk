@@ -1,0 +1,38 @@
+---
+title: "All Mortgage Calculators | WhatsMyMortgage.ca"
+description: "Every free Ontario mortgage calculator in one place — affordability, renewal, equity, penalty, payment, land transfer tax, default insurance, stress test, GDS/TDS, and amortization."
+canonicalPath: "/calculators/"
+ogSlug: "calculators"
+layout: layouts/base.njk
+noJs: true
+intent: low
+pageScript: "/assets/js/pages/analytics-lite.js"
+---
+{# JOB: list every calculator on the site, grouped by situation, so someone who already knows what they want can jump straight there. #}
+<div class="container-narrow" style="padding-top:var(--space-6);padding-bottom:var(--space-12)">
+  <a class="back-link" href="/">← Home</a>
+  <h1 style="margin:var(--space-3) 0 var(--space-3);font-size:var(--text-28);letter-spacing:var(--track-28)">All calculators</h1>
+  <p style="font-size:var(--text-15);opacity:.75;max-width:60ch;margin:0 0 var(--space-6)">Every free calculator on the site, grouped by where you are. All run the same real lender math — no signup, nothing gated.</p>
+
+  {% for group in ["Buying a home", "Managing a mortgage you already have", "Check your numbers"] %}
+  <h2 style="margin:var(--space-8) 0 var(--space-3);font-size:var(--text-21);letter-spacing:var(--track-21)">{{ group }}</h2>
+  <div class="grid-auto-md">
+    {% for calc in calculators %}
+      {% if calc.group == group %}
+      <a href="/{{ calc.slug }}/" class="card click-card" style="padding:var(--space-4);border:1px solid var(--color-divider);display:flex;gap:var(--space-3);align-items:flex-start">
+        <span class="calc-hub-icon">{{ icon(calc.icon, 20) }}</span>
+        <span>
+          <span class="card-title" style="font-size:var(--text-15);display:block">{{ calc.navTitle }}</span>
+          <span class="card-body" style="display:block;margin-top:4px">{{ calc.cardDesc }}</span>
+        </span>
+      </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endfor %}
+
+  <div class="next-links" style="margin-top:var(--space-10)">
+    <a href="/learn/" class="next-link">Read the plain-language explainers →</a>
+    <a href="/mortgage-glossary/" class="next-link">Browse the glossary →</a>
+  </div>
+</div>

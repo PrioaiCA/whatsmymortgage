@@ -106,5 +106,76 @@ export function getCalcFields(view, s) {
       ]
     };
   }
+  if (view === 'payment') {
+    return {
+      sliders: [
+        { key: 'price', label: 'Purchase price', term: '', min: 200000, max: 2000000, step: 10000, format: 'moneyFull' },
+        { key: 'down', label: 'Down payment', term: 'mindown', min: 0, max: 500000, step: 5000, format: 'moneyFull' },
+        { key: 'rate', label: 'Interest rate', term: 'rate', min: 3, max: 7, step: 0.01, format: 'pct2' }
+      ],
+      toggles: [
+        { key: 'amort', label: 'Amortization', term: 'amort', numeric: true, options: [{ value: 25, label: '25 years' }, { value: 30, label: '30 years' }] }
+      ]
+    };
+  }
+  if (view === 'ltt') {
+    return {
+      sliders: [
+        { key: 'price', label: 'Purchase price', term: '', min: 200000, max: 2000000, step: 10000, format: 'moneyFull' }
+      ],
+      toggles: [
+        { key: 'city', label: 'Location', term: '', select: true, options: ONTARIO_LOCATIONS },
+        { key: 'firstTime', label: 'First-time buyer', term: 'rebate', options: [{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }] }
+      ]
+    };
+  }
+  if (view === 'cmhc') {
+    return {
+      sliders: [
+        { key: 'price', label: 'Purchase price', term: '', min: 200000, max: 2000000, step: 10000, format: 'moneyFull' },
+        { key: 'down', label: 'Down payment', term: 'mindown', min: 0, max: 500000, step: 5000, format: 'moneyFull' }
+      ],
+      toggles: [
+        { key: 'amort', label: 'Amortization', term: 'amort', numeric: true, options: [{ value: 25, label: '25 years' }, { value: 30, label: '30 years' }] }
+      ]
+    };
+  }
+  if (view === 'stress') {
+    return {
+      sliders: [
+        { key: 'mortgage', label: 'Mortgage amount', term: '', min: 50000, max: 1500000, step: 5000, format: 'moneyFull' },
+        { key: 'rate', label: 'Your contract rate', term: 'rate', min: 3, max: 7, step: 0.01, format: 'pct2' },
+        { key: 'income', label: 'Household income (annual)', term: '', min: 30000, max: 400000, step: 2000, format: 'moneyFull' },
+        { key: 'debt', label: 'Monthly debt payments', term: 'debts', min: 0, max: 3000, step: 50, format: 'moneyFullPerMo' }
+      ],
+      toggles: [
+        { key: 'amort', label: 'Amortization', term: 'amort', numeric: true, options: [{ value: 25, label: '25 years' }, { value: 30, label: '30 years' }] }
+      ]
+    };
+  }
+  if (view === 'gdstds') {
+    return {
+      sliders: [
+        { key: 'income', label: 'Household income (annual)', term: '', min: 30000, max: 400000, step: 2000, format: 'moneyFull' },
+        { key: 'mortgagePayment', label: 'Mortgage payment', term: '', min: 0, max: 8000, step: 50, format: 'moneyFullPerMo' },
+        { key: 'propertyTax', label: 'Property tax (annual)', term: '', min: 0, max: 20000, step: 100, format: 'moneyFull' },
+        { key: 'condo', label: 'Monthly condo fees', term: 'condo', min: 0, max: 1200, step: 25, format: 'moneyFullPerMo' },
+        { key: 'debt', label: 'Other monthly debts', term: 'debts', min: 0, max: 3000, step: 50, format: 'moneyFullPerMo' }
+      ],
+      toggles: []
+    };
+  }
+  if (view === 'amortization') {
+    return {
+      sliders: [
+        { key: 'mortgage', label: 'Mortgage amount', term: '', min: 50000, max: 1500000, step: 5000, format: 'moneyFull' },
+        { key: 'rate', label: 'Interest rate', term: 'rate', min: 3, max: 7, step: 0.01, format: 'pct2' },
+        { key: 'amort', label: 'Amortization', term: 'amort', min: 5, max: 30, step: 1, format: 'years' },
+        { key: 'extra', label: 'Extra payment, every month', term: 'prepay', min: 0, max: 1500, step: 25, format: 'moneyFullPerMo' },
+        { key: 'lumpSum', label: 'One-time lump sum', term: '', min: 0, max: 50000, step: 1000, format: 'moneyFull' }
+      ],
+      toggles: []
+    };
+  }
   return { sliders: [], toggles: [] };
 }

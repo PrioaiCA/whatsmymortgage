@@ -91,6 +91,7 @@ async function main() {
   await writeCard('default', { title: site.name, kicker: 'Free · No signup · Ontario' });
   await writeCard('home', { title: 'Free Ontario mortgage calculators, no signup', kicker: 'Free · No signup · Ontario' });
   await writeCard('learn', { title: 'Get to know mortgages', kicker: 'Learn' });
+  await writeCard('calculators', { title: 'Every mortgage calculator, in one place', kicker: 'All calculators' });
   await writeCard('mortgage-glossary', { title: 'Mortgage glossary, decoded', kicker: 'Jargon, decoded' });
   await writeCard('what-happens-next', { title: 'What happens after you apply?', kicker: 'The process' });
   await writeCard('what-youll-need', { title: 'What documents will you need?', kicker: 'Get ready' });

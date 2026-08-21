@@ -11,8 +11,11 @@
       <h2 class="footer-heading">Calculators</h2>
       <div class="footer-links">
         {% for calc in calculators %}
-        <a href="/{{ calc.slug }}/">{{ calc.navTitle }}</a>
+          {% if calc.dropdownFeatured %}
+          <a href="/{{ calc.slug }}/">{{ calc.navTitle }}</a>
+          {% endif %}
         {% endfor %}
+        <a href="/calculators/">All calculators →</a>
       </div>
     </div>
     <div>

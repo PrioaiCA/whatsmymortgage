@@ -12,11 +12,14 @@
       <summary>Calculators {{ icon('chevron-down', 14) }}</summary>
       <div class="nav-dropdown-panel">
         {% for calc in calculators %}
-        <a href="/{{ calc.slug }}/" class="nav-dropdown-item">
-          <span class="nav-dropdown-icon">{{ icon(calc.icon, 18) }}</span>
-          <span>{{ calc.navTitle }}</span>
-        </a>
+          {% if calc.dropdownFeatured %}
+          <a href="/{{ calc.slug }}/" class="nav-dropdown-item">
+            <span class="nav-dropdown-icon">{{ icon(calc.icon, 18) }}</span>
+            <span>{{ calc.navTitle }}</span>
+          </a>
+          {% endif %}
         {% endfor %}
+        <a href="/calculators/" class="nav-dropdown-item nav-dropdown-all">All calculators →</a>
       </div>
     </details>
     <a href="/learn/" {% if page.url == '/learn/' %}aria-current="page"{% endif %}>Learn</a>
