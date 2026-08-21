@@ -3,7 +3,7 @@ import { pmt, remBal, insurancePremiumRate, ontarioLTT } from './core.js';
 
 export const view = 'rent';
 
-export const defaultState = { rent: 2600, price: 750000, down: 75000, rate: 4.44, carrying: 500, appr: 4.5, invret: 6, city: '905' };
+export const defaultState = { rent: 2600, price: 750000, down: 75000, rate: 4.44, carrying: 500, appr: 4.5, invret: 6, city: 'toronto' };
 
 export function compute(s) {
   const amort = 25;

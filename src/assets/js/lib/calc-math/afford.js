@@ -3,7 +3,7 @@ import { pmt, minDown, insurancePremiumRate, ontarioLTT } from './core.js';
 
 export const view = 'afford';
 
-export const defaultState = { income: 96000, down: 60000, debt: 400, condo: 0, rate: 4.44, city: '905', amort: 25 };
+export const defaultState = { income: 96000, down: 60000, debt: 400, condo: 0, rate: 4.44, city: 'toronto', amort: 25 };
 
 export function compute(s) {
   const monthlyIncome = s.income / 12;
