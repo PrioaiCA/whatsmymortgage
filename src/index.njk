@@ -4,7 +4,7 @@ description: "See what you can afford, what your renewal really costs, or what b
 canonicalPath: "/"
 ogSlug: "home"
 layout: layouts/base.njk
-intent: low
+intent: medium
 pageScript: "/assets/js/pages/home.js"
 schema:
   "@context": "https://schema.org"
@@ -15,7 +15,9 @@ schema:
 ---
 {#
   JOB: route each visitor to the right calculator and the right reading —
-  nothing is answered or explained on this page itself.
+  nothing is answered or explained on this page itself. A general contact
+  option sits at the very end, for a visitor who'd rather skip straight to
+  a person than pick a calculator first.
 #}
 <div class="hero-band">
   <div class="hero container-mid">
@@ -97,5 +99,15 @@ schema:
       </a>
       <a href="/mortgage-glossary/" class="journey-read">Or browse the glossary →</a>
     </div>
+  </div>
+</div>
+
+<div class="section container home-contact-row">
+  <div class="home-contact-col">
+    {{ contactCardHtml({
+      id: 'home',
+      calculatorName: 'General inquiry',
+      intro: "Not sure which calculator fits, or want to skip straight to a person? A licensed mortgage agent can help, wherever you are in the process — no cost and no obligation."
+    }) | safe }}
   </div>
 </div>

@@ -47,7 +47,12 @@ export function initAssistant() {
   toggle.addEventListener('click', () => (panel.hidden ? open() : close()));
   closeBtn.addEventListener('click', close);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) close(); });
-  document.addEventListener('click', (e) => { if (!panel.hidden && !widget.contains(e.target)) close(); });
+  // composedPath(), not e.target: a click on a mode/option button replaces
+  // that button's own subtree via innerHTML before this bubbles up here,
+  // so e.target can already be detached from the document — widget.contains
+  // would then wrongly say "outside" and close the panel it was opened by.
+  // composedPath() was captured at dispatch time, before any of that.
+  document.addEventListener('click', (e) => { if (!panel.hidden && !e.composedPath().includes(widget)) close(); });
 
   function renderModePicker() {
     body.innerHTML = `

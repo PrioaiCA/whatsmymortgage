@@ -21,7 +21,8 @@ const OUT_DIR = path.join(__dirname, '../src/assets/og');
 
 const BG = '#f3f2f2';
 const INK = '#201e1d';
-const ACCENT = '#ec3013';
+const ACCENT = '#14487a';
+const ACCENT_2 = '#a6600f';
 const FONT = 'Liberation Sans, Arial, Helvetica, sans-serif';
 
 function esc(s) {
@@ -66,9 +67,11 @@ function card({ title, kicker }) {
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
     <rect width="1200" height="630" fill="${BG}"/>
-    <rect x="80" y="72" width="56" height="56" fill="${ACCENT}"/>
-    <text x="108" y="110" font-family="${FONT}" font-weight="800" font-size="34" fill="${BG}" text-anchor="middle">?</text>
-    <text x="152" y="112" font-family="${FONT}" font-weight="800" font-size="30" fill="${INK}">What's My Mortgage<tspan fill="#9b9797">.ca</tspan></text>
+    <g transform="translate(80,72) scale(0.56)">
+      <path d="M50,6 L92,42 L92,94 L8,94 L8,42 Z" fill="${ACCENT}"/>
+      <path d="M50,50 L70,88 L30,88 Z" fill="${ACCENT_2}"/>
+    </g>
+    <text x="152" y="112" font-family="${FONT}" font-weight="800" font-size="30" fill="${INK}">What's My Mortgage</text>
     <text font-family="${FONT}" font-weight="800" font-size="${fontSize}" fill="${INK}" letter-spacing="-1">${tspans}</text>
     ${kicker ? `<text x="80" y="574" font-family="${FONT}" font-weight="700" font-size="22" fill="${ACCENT}" letter-spacing="2">${esc(kicker.toUpperCase())}</text>` : ''}
     <rect x="0" y="618" width="1200" height="12" fill="${ACCENT}"/>
