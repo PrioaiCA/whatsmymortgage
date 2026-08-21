@@ -21,7 +21,7 @@ const OUT_DIR = path.join(__dirname, '../src/assets/og');
 
 const BG = '#f3f2f2';
 const INK = '#201e1d';
-const ACCENT = '#ec3013';
+const ACCENT = '#14487a';
 const FONT = 'Liberation Sans, Arial, Helvetica, sans-serif';
 
 function esc(s) {

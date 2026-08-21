@@ -6,7 +6,7 @@ export function initNavDropdown(root) {
   if (!dropdown) return;
 
   document.addEventListener('click', (e) => {
-    if (dropdown.open && !dropdown.contains(e.target)) dropdown.open = false;
+    if (dropdown.open && !e.composedPath().includes(dropdown)) dropdown.open = false;
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && dropdown.open) {

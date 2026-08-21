@@ -60,7 +60,7 @@ export function renderContactCard(opts) {
       <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
         <label for="${id}-company">Leave this field blank</label><input id="${id}-company" type="text" tabindex="-1" autocomplete="off" data-contact-field="company"/>
       </div>
-      ${error ? `<p style="font-size:var(--text-13);color:var(--color-accent-700);margin:0" role="alert">${esc(error)}</p>` : ''}
+      ${error ? `<p style="font-size:var(--text-13);color:var(--color-danger);margin:0" role="alert">${esc(error)}</p>` : ''}
       <button type="button" class="btn btn-primary btn-block" data-action="contactSubmit" ${disabled} style="justify-content:center;text-align:center">${esc(buttonLabel)}</button>
       <p class="trust-note">Optional. Free either way. Nothing beyond this submission is stored, it goes to one licensed agent — not a list — and every rule this site uses is <a href="/sources/">published</a>.</p>
     </div>`;

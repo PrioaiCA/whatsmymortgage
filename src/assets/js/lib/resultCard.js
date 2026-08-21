@@ -10,10 +10,11 @@ function esc(s) {
 }
 
 export function renderResultMetrics(result) {
-  // The header is always the brand color — this is the one number someone
-  // came for, and it should look like it belongs to this site. A bad-news
-  // result still reads through the wording, not a different color.
-  const headerBg = 'var(--color-accent-600)';
+  // The header is always the trust color (primary), never the action color
+  // (accent) — this is the one number someone came for, and it should read
+  // as this site's own authority on it, not as a thing to click. A
+  // bad-news result still reads through the wording, not a different color.
+  const headerBg = 'var(--color-primary-600)';
   const notes = result.notes || [];
   const tiles = result.tiles || [];
   const ledgerGroups = result.ledgerGroups || [];
